@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+.breath-chat-message {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 17px;
+  margin-top: 20px;
+  font-size: 13px; }
+  .breath-chat-message:after, .breath-chat-message:before {
+    content: "";
+    display: table;
+    *zoom: 1; }
+  .breath-chat-message:after {
+    clear: both; }
+  .breath-chat-message .content {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: relative;
+    padding: 9px 9px 7px;
+    border-radius: 5px;
+    border: 1px solid; }
+  .breath-chat-message .arrow-container {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: absolute;
+    top: 4px; }
+  .breath-chat-message.breath-chat-message-left .content {
+    float: left;
+    color: #999999;
+    background: #F4F4F4;
+    border-color: #F4F4F4; }
+  .breath-chat-message.breath-chat-message-left .arrow-container {
+    left: 10px; }
+  .breath-chat-message.breath-chat-message-right .content {
+    float: right;
+    color: white;
+    background: #66CEFF;
+    border-color: #66CEFF; }
+  .breath-chat-message.breath-chat-message-right .arrow-container {
+    right: 10px; }
+
+/*# sourceMappingURL=main.css.map */

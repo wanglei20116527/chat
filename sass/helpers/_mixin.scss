@@ -1,0 +1,22 @@
+@mixin inline-block
+{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+@mixin clear($selector)
+{
+	#{$selector}:after,
+	#{$selector}:before
+	{
+		content: "";
+		display: table;
+		*zoom: 1;
+	}
+
+	#{$selector}:after
+	{
+		clear: both;
+	}
+}

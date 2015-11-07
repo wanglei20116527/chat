@@ -1,0 +1,65 @@
+.breath-chat-message
+{
+	@include clear("&");
+
+	position: relative;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 17px;
+	margin-top: $breath-chat-message-space;
+	font-size: $breath-chat-message-font-size;
+
+	.content
+	{
+		@include inline-block;
+
+		position: relative;
+		padding: 9px 9px 7px;
+		border-radius: $breath-chat-message-radius;
+		border: 1px solid;
+	}
+
+	.arrow-container
+	{
+		@include inline-block;
+
+		position: absolute;
+		top: $breath-chat-message-arrow-vertical-offset;
+	}
+
+	&.breath-chat-message-left
+	{
+		.content
+		{
+			float: left;
+			color: $breath-chat-left-message-color;
+			background: $breath-chat-left-message-background;
+			border-color: $breath-chat-left-message-background;
+		}
+
+		.arrow-container
+		{
+			left: 10px;
+		}	
+	}
+
+	&.breath-chat-message-right
+	{
+		.content
+		{
+			float: right;
+			color: $breath-chat-right-message-color;
+			background: $breath-chat-right-message-background;
+			border-color: $breath-chat-right-message-background;
+		}
+
+		.arrow-container
+		{
+			right: 10px;
+		}	
+
+	}
+
+
+}

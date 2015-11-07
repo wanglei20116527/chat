@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,oBACA;EACC,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,IAAI",
+"sources": ["_breath-chat-message.scss"],
+"names": [],
+"file": "_breath-chat-message.css"
+}
