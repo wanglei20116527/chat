@@ -1,0 +1,16 @@
+.breath-chat-thumbnail
+{
+	@include inline-block;
+	
+	width: $breath-chat-thumbnail-width;
+	height:$breath-chat-thumbnail-height;
+	border-radius: $breath-chat-thumbnail-radius;
+	overflow: hidden;
+
+	.image
+	{
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+}

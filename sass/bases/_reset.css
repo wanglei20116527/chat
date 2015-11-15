@@ -8,4 +8,8 @@ li {
 a {
   text-decoration: none; }
 
+figure,
+figcaption {
+  display: block; }
+
 /*# sourceMappingURL=_reset.css.map */

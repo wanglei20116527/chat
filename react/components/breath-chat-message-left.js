@@ -1,6 +1,6 @@
-var React = require("react");
+let React = require("react");
 
-var BreathChatArrowLeft = require("./breath-chat-arrow-left");
+let BreathChatArrowLeft = require("./breath-chat-arrow-left");
 
 module.exports = React.createClass({
 	propTypes: {
@@ -9,12 +9,12 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
-			<li  className = "breath-chat-message breath-chat-message-left" >
+			<div  className = "breath-chat-message left" >
 				<div className = "arrow-container">
 					<BreathChatArrowLeft className = "arrow" />
 				</div>
 				<p className = "content">{this.props.content}</p>
-			</li>
+			</div>
 		);
 	}
 });

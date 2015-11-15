@@ -13,8 +13,8 @@ module.exports = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"li",
-			{ className: "breath-chat-message breath-chat-message-right" },
+			"div",
+			{ className: "breath-chat-message right" },
 			React.createElement(
 				"div",
 				{ className: "arrow-container" },

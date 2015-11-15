@@ -1,14 +1,12 @@
-.breath-chat-message
-{
+.breath-chat-message {
 	@include clear("&");
+	@include inline-block;
 
 	position: relative;
-	display: block;
-	width: 100%;
 	box-sizing: border-box;
 	padding: 0 17px;
-	margin-top: $breath-chat-message-space;
 	font-size: $breath-chat-message-font-size;
+	max-width: $breath-chat-message-maxWidth;
 
 	.content
 	{
@@ -16,8 +14,9 @@
 
 		position: relative;
 		padding: 9px 9px 7px;
-		border-radius: $breath-chat-message-radius;
 		border: 1px solid;
+
+		border-radius: $breath-chat-message-radius;
 	}
 
 	.arrow-container
@@ -28,8 +27,9 @@
 		top: $breath-chat-message-arrow-vertical-offset;
 	}
 
-	&.breath-chat-message-left
+	&.left
 	{
+		float: left;
 		.content
 		{
 			float: left;
@@ -44,8 +44,9 @@
 		}	
 	}
 
-	&.breath-chat-message-right
+	&.right
 	{
+		float: right;
 		.content
 		{
 			float: right;
@@ -60,6 +61,5 @@
 		}	
 
 	}
-
-
 }
+
