@@ -1,0 +1,53 @@
+.breath-chat-messages-container
+{
+	position: relative;
+	width: $breath-chat-messages-container-phone-width;
+	height: $breath-chat-messages-container-phone-height;
+	overflow: scroll;
+	-webkit-overflow-scrolling : touch;
+
+	@media screen and (min-width:$screen-md-min )
+	{
+		width: $breath-chat-messages-container-pc-width;
+		height: $breath-chat-messages-container-pc-height;
+	}
+
+	.breath-chat-messages-inner-container
+	{
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: 20px 0;
+
+
+		.breath-chat-message-container
+		{
+			@include clear("&");
+
+			width: 100%;
+			margin-top: $breath-chat-message-container-space;
+
+			.breath-chat-thumbnail
+			{
+				position: relative;
+				top: -4px;
+			}
+
+			&.left 
+			{
+				.breath-chat-thumbnail
+				{
+					float: left;
+				}
+			}
+
+			&.right 
+			{
+				.breath-chat-thumbnail
+				{
+					float: right;
+				}
+			}
+		}
+	}
+}

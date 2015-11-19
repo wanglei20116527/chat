@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,4BACA;EACC,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,MAAM;EAEhB,uEACA;IACC,QAAQ,EAAE,QAAQ;IAClB,MAAM,EAAE,CAAC;IACT,IAAI,EAAE,CAAC;IACP,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,IAAI;IACZ,QAAQ,EAAE,MAAM",
+"sources": ["_breath-chat-communicatePane.scss"],
+"names": [],
+"file": "_breath-chat-communicatePane.css"
+}

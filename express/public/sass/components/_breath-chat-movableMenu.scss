@@ -1,0 +1,13 @@
+$breath-chat-movableMenu-width: 40px !default;
+$breath-chat-movableMenu-height: 40px !default;
+$breath-chat-movableMenu-border-radius: 20px !default;
+
+.breath-chat-movableMenu
+{
+	position: relative;
+	width: $breath-chat-movableMenu-width;
+	height: $breath-chat-movableMenu-height;
+	border-radius: $breath-chat-movableMenu-border-radius;
+
+	background-color: red;
+}

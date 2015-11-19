@@ -1,0 +1,11 @@
+.breath-chat-textarea
+{
+	@include inline-block;
+
+	width: $breath-chat-textarea-width;
+	max-height: $breath-chat-textarea-max-height;
+	border-radius: $breath-chat-textarea-border-radius;
+	border-style: $breath-chat-textarea-border-style;
+	border-width: $breath-chat-textarea-border-width;
+	border-color: $breath-chat-textarea-border-color;
+}
