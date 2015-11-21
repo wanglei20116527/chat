@@ -1,0 +1,29 @@
+.breath-chat-interactivePane
+{
+	display: block;
+
+	.toolBar
+	{
+		@include flex;
+		@include flex-direction( row );
+		@include align-items( stretch );
+
+		& > *
+		{
+			margin: 0 4px;
+		}
+
+		& > *:first-child
+		{
+
+			@include flex-grow( 1 );
+			@include align-self( flex-start );
+		}
+	}
+
+	.contentPane
+	{
+		width: 100%;
+		background-color: blue;
+	}
+}

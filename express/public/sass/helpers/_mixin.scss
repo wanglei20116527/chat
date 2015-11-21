@@ -1,3 +1,21 @@
+@mixin prefixer-for-propertyName( $property, $value, $prefixes )
+{
+	@each $prefix in $prefixes
+	{
+		#{"-" + $prefix+ "-" + $property}: $value;
+	}
+	#{$property}: $value;
+}
+
+@mixin prefixer-for-propertyValue( $property, $value, $prefixes )
+{
+	@each $prefix in $prefixes
+	{
+		#{$property}: #{"-" + $prefix+ "-" + $value};
+	}
+	#{$property}: $value;
+}
+
 @mixin inline-block
 {
 	display: inline-block;
@@ -20,3 +38,127 @@
 		clear: both;
 	}
 }
+
+@mixin flex
+{
+	@include prefixer-for-propertyValue( "display", box,  "webkit" "moz" "o" "ms");
+	@include prefixer-for-propertyValue( "display", flexbox,  "webkit" "moz" "o" "ms");
+	@include prefixer-for-propertyValue( "display", flex,  "webkit" "moz" "o" "ms");
+}
+
+@mixin flex-direction( $direction )
+{	
+	@if $direction == row
+	{
+		@include prefixer-for-propertyName("box-orient", "horizontal",  "webkit" "moz" "o" "ms");
+		@include prefixer-for-propertyName("box-direction", normal,  "webkit" "moz" "o" "ms");
+	}@else if $direction == row-reverse
+	{
+		@include prefixer-for-propertyName("box-orient", horizontal, "webkit" "moz" "o" "ms");
+		@include prefixer-for-propertyName("box-direction", reverse, "webkit" "moz" "o" "ms");
+	}@else if $direction == column
+	{
+		@include prefixer-for-propertyName("box-orient", vertical,  "webkit" "moz" "o" "ms");
+		@include prefixer-for-propertyName("box-direction", normal,  "webkit" "moz" "o" "ms");
+	}@else if $direction == column-reverse
+	{
+		@include prefixer-for-propertyName("box-orient", vertical,  "webkit" "moz" "o" "ms");
+		@include prefixer-for-propertyName("box-direction", reverse, "webkit" "moz" "o" "ms");
+	}@else
+	{
+		@warn( "flex-direction value #{$direction} is not supported" );
+	}
+
+
+	@include prefixer-for-propertyName("flex-direction", $direction,  "webkit" "moz" "o" "ms");
+}
+
+@mixin flex-grow( $grow )
+{
+	@include prefixer-for-propertyName("boxflex", $grow, "webkit" "moz" "o" "ms");
+	@include prefixer-for-propertyName("pos-flex", $grow, "webkit" "moz" "o" "ms");
+	@include prefixer-for-propertyName("flex-grow", $grow, "webkit" "moz" "o" "ms");
+}
+
+@mixin justify-content( $alignment )
+{
+	@if $alignment == flex-start
+	{
+		@include prefixer-for-propertyName( "box-pack", start,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-pack", start,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == flex-end
+	{
+		@include prefixer-for-propertyName( "box-pack", end,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-pack", end,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == center
+	{
+		@include prefixer-for-propertyName( "box-pack", center,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-pack", center,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == space-between
+	{
+		@include prefixer-for-propertyName( "box-pack", justify,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-pack", justify,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == space-around
+	{
+		@warn("justify-content value space-around is not supported for old version flex-pack and box-paxk");
+
+	}@else
+	{
+		@warn( "justify-content value #{$alignment} is not value" );
+	}
+
+	@include prefixer-for-propertyName( "justify-content", $alignment,  "webkit" "moz" "o" "ms" );
+}
+
+@mixin align-items( $alignment )
+{
+	@if $alignment == flex-start
+	{
+		@include prefixer-for-propertyName( "box-align", start,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-align", start,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == flex-end
+	{
+		@include prefixer-for-propertyName( "box-align", end,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-align", end,  "webkit" "moz" "o" "ms" );
+
+	}@else if $alignment == center or $alignment == baseline or $alignment == stretch
+	{
+		@include prefixer-for-propertyName( "box-align", $alignment,  "webkit" "moz" "o" "ms" );
+		@include prefixer-for-propertyName( "flex-align", $alignment,  "webkit" "moz" "o" "ms" );
+
+	}@else
+	{
+		@warn( "align-item value #{$alignment} is not value" );
+	}
+
+	@include  prefixer-for-propertyName( "align-items", $alignment,  "webkit" "moz" "o" "ms");
+}
+
+@mixin align-self( $alignment )
+{
+	@if $alignment == flex-start
+	{
+		@include prefixer-for-propertyName("flex-item-align", start, "webkit" "moz" "o" "ms");
+
+	}@else if $alignment == flex-end
+	{
+		@include prefixer-for-propertyName("flex-item-align", end, "webkit" "moz" "o" "ms");
+
+	}@else if $alignmet == center or $alignment == baseline or $alignment == auto or  $alignment == stretch
+	{
+		@include prefixer-for-propertyName("flex-item-align", $alignment, "webkit" "moz" "o" "ms");
+
+	}@else
+	{
+		@warn ("self-align value #{$alignment} is not supported");
+	}
+
+	@include prefixer-for-propertyName("align-self",$alignment, "webkit" "moz" "o" "ms");
+}
+
+

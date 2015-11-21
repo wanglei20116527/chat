@@ -9,8 +9,16 @@ var ReactDOM = require("react-dom");
 
 // let Textarea = require("./components/breath-chat-textarea");
 
-var CommunicatePane = require("./components/breath-chat-communicatePane");
+// let CommunicatePane  = require("./components/breath-chat-communicatePane");
 
-var MovableMenu = require("./components/breath-chat-movableMenu");
+// let MovableMenu = require("./components/breath-chat-movableMenu");
 
-ReactDOM.render(React.createElement(MovableMenu, null), document.getElementById("breath-chat"));
+var InteractivePane = require('./components/breath-chat-interactivePane');
+
+// let GesturePane = require("./components/breath-chat-gesturePane");
+
+// let Icon = require("./components/breath-chat-icon");
+
+ReactDOM.render(
+// <Icon width = "20px" height="20px" icon = "images/icon/iconfont-arrow02add.png" />,
+React.createElement(InteractivePane, null), document.getElementById("breath-chat"));

@@ -7,12 +7,18 @@ let ReactDOM = require( "react-dom" );
 
 // let Textarea = require("./components/breath-chat-textarea");
 
-let CommunicatePane  = require("./components/breath-chat-communicatePane");
+// let CommunicatePane  = require("./components/breath-chat-communicatePane");
 
-let MovableMenu = require("./components/breath-chat-movableMenu");
+// let MovableMenu = require("./components/breath-chat-movableMenu");
 
+let InteractivePane = require('./components/breath-chat-interactivePane');
+
+// let GesturePane = require("./components/breath-chat-gesturePane");
+
+// let Icon = require("./components/breath-chat-icon");
 
 ReactDOM.render(
-	<MovableMenu />,
+	// <Icon width = "20px" height="20px" icon = "images/icon/iconfont-arrow02add.png" />,
+	<InteractivePane />,
 	document.getElementById( "breath-chat" )
 );

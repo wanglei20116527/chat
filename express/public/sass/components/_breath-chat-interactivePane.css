@@ -1,0 +1,9 @@
+.breath-chat-interactivePane {
+  display: block; }
+  .breath-chat-interactivePane .toolBar {
+    display: -webkit-flex; }
+  .breath-chat-interactivePane .contentPane {
+    width: 100%;
+    background-color: blue; }
+
+/*# sourceMappingURL=_breath-chat-interactivePane.css.map */

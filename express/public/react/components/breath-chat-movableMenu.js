@@ -100,7 +100,12 @@ module.exports= React.createClass({
 	},
 
 	onTapHandler: function( evt ){
-		alert( "wanglei is cool" );
+		if( document.documentElement.webkitRequestFullScreen ){
+			document.documentElement.webkitRequestFullScreen();
+			alert(1);
+		}else{
+			alert(2);
+		}
 	},
 
 	onDoubleTapHandler: function( evt ){

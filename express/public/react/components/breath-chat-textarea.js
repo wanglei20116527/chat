@@ -1,13 +1,18 @@
 let React = require("react");
 
 module.exports = React.createClass({
-	propTypes: function(){
+	propTypes: {
+		row: React.PropTypes.number,
+		column: React.PropTypes.number,
+		value: React.PropTypes.string,
+		onChangeHandler: React.PropTypes.func,
+		onKeyUpHandler: React.PropTypes.func,
+		onBlurHandler: React.PropTypes.func
+	},
+
+	getDefaultProps: function(){
 		return {
-			row: React.PropTypes.number,
-			value: React.PropTypes.string,
-			onChangeHandler: React.PropTypes.func,
-			onKeyUpHandler: React.PropTypes.func,
-			onBlurHandler: React.PropTypes.func
+			row: 1
 		};
 	},
 
@@ -26,8 +31,11 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<textarea  className = "breath-chat-textarea"
-				     row = {this.props.row} 
-				     onKeyUp   = {this.onKeyUpHandler} onChange = {this.onChangeHandler} onBlurHandler = {this.onBlurHandler}>
+				     rows = {this.props.row} 
+				     columns = {this.props.column}
+				     onKeyUp   = {this.onKeyUpHandler} 
+				     onChange = {this.onChangeHandler} 
+				     onBlur = {this.onBlurHandler}>
 			</textarea>
 		);
 	}

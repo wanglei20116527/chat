@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta name = "viewport" content = "width=device-witdh, initial-scale =1">
+		<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no; minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes" /> 
+		<meta name="apple-touch-fullscreen" content="yes" /> 
+
+		<style type="text/css">
+			*
+			{
+				padding: 0;
+				margin: 0;
+			}
+
+			html
+			{
+				position: relative;
+				width: 100%;
+				height: 120%;
+				padding: 10% 0;
+				box-sizing: border-box;
+			}
+
+			body
+			{
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.body
+			{
+				width: 100%;
+				height: 100%;
+				background-color: red;
+			}
+		</style>	
+	</head>
+
+	<body>
+		<div class = "body">
+		</div>
+
+		<script type="text/javascript">
+			(function( win ){
+				var doc = win.document;
+				
+				// If there's a hash, or addEventListener is undefined, stop here
+				if(!win.navigator.standalone && !location.hash && win.addEventListener ){
+					
+					//scroll to 1
+					win.scrollTo( 0, 1 );
+					var scrollTop = 1,
+						getScrollTop = function(){
+							return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+						},
+					
+						//reset to 0 on bodyready, if needed
+						bodycheck = setInterval(function(){
+							if( doc.body ){
+								clearInterval( bodycheck );
+								scrollTop = getScrollTop();
+								win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+							}	
+						}, 15 );
+					
+					win.addEventListener( "load", function(){
+						setTimeout(function(){
+							//at load, if user hasn't scrolled more than 20 or so...
+							if( getScrollTop() < 20 ){
+								//reset to hide addr bar at onload
+								win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+							}
+						}, 0);
+					}, false );
+				}
+			})( window );
+		</script>
+	</body>
+</html>

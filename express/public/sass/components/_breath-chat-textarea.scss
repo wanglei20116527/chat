@@ -1,3 +1,12 @@
+$breath-chat-textarea-width: auto !default;
+$breath-chat-textarea-max-height: auto !default;
+$breath-chat-textarea-border-radius: 2px !default;
+$breath-chat-textarea-border-color: rgba(0, 0, 0, 0.3) !default;
+$breath-chat-textarea-border-style: solid !default;
+$breath-chat-textarea-border-width:1px !default;
+$breath-chat-textarea-font-size: 14px !default;
+$breath-chat-textarea-padding: 4px !default;
+
 .breath-chat-textarea
 {
 	@include inline-block;
@@ -8,4 +17,7 @@
 	border-style: $breath-chat-textarea-border-style;
 	border-width: $breath-chat-textarea-border-width;
 	border-color: $breath-chat-textarea-border-color;
+	font-size: $breath-chat-textarea-font-size;
+	padding: $breath-chat-textarea-padding;
+	vertical-align: middle;
 }

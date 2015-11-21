@@ -6,6 +6,7 @@
 @import "helpers/mixin";
 
 // components
+@import "components/breath-chat-icon";
 @import "components/breath-chat-label";
 @import "components/breath-chat-thumbnail";
 @import "components/breath-chat-message";
@@ -13,5 +14,7 @@
 @import "components/breath-chat-textarea";
 @import "components/breath-chat-communicatePane";
 @import "components/breath-chat-movableMenu";
+@import "components/breath-chat-gesturePane";
+@import "components/breath-chat-interactivePane";
 
 
