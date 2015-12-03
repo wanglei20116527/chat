@@ -1,3 +1,7 @@
+$breath-chat-thumbnail-width: 40px !default;
+$breath-chat-thumbnail-height: 40px !default;
+$breath-chat-thumbnail-radius: 50%  !default;
+
 .breath-chat-thumbnail
 {
 	@include inline-block;

@@ -39,6 +39,19 @@
 	}
 }
 
+@mixin box-sizing( $type )
+{
+	@include prefixer-for-propertyName( "box-sizing", $type, "webkit" "moz" "o" "ms" );
+}
+
+@mixin text-overflow-ellipsis
+{
+	@include prefixer-for-propertyName("text-overflow", ellipsis, "o");
+
+	white-space: nowrap;
+	overflow: hidden;	
+}
+
 @mixin flex
 {
 	@include prefixer-for-propertyValue( "display", box,  "webkit" "moz" "o" "ms");

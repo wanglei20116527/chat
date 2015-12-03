@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,YACA;EACC,MAAM,EAAE,SAAS;EACjB,OAAO,EAAE,KAAK;EACd,KAAK,EAPiB,KAAK;EAQ3B,MAAM,EAPiB,IAAI;EAS3B,UAAU,EAAE,4BAA4B",
+"sources": ["_breath-chat.scss"],
+"names": [],
+"file": "_breath-chat.css"
+}

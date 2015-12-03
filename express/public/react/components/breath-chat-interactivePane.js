@@ -1,53 +1,34 @@
 let React = require( "react" );
 
-let Icon = require( "./breath-chat-icon" );
-let Textarea = require( "./breath-chat-textarea" );
-let GesturePane = require( "./breath-chat-gesturePane" );
+import Icon from "./breath-chat-icon";
+import Textarea from "./breath-chat-textarea";
 
-const ICON_WIDTH  = 30;
-const ICON_HEIGHT = 30;
+const ICON_WIDTH = 20;
+const ICON_HEIGHT = 20;
 
-module.exports = React.createClass({
-
-	onExpressionButtonTapHandler: function( evt ){
-		alert( "wanglei is cool and kang is wanglei best friend" );
-	},	
-
-	onAddtionalButtonTapHandler: function( evt ){
-		alert( "wanglei is cool and houna is cute" );
-	},
-
-	render: function(){
-		let expressionButtonProps = {
-			width: ICON_WIDTH,
-			height: ICON_HEIGHT,
-			icon: "images/icon/iconfont-arrow02add.png"
+class InteractivePane extends React.Component{
+	render(){
+		let expressionIconProps = {
+			icon: "icon-picture"
 		};
 
-		let additionalButtonProps = {
-			width: ICON_WIDTH,
-			height: ICON_HEIGHT,
-			icon: "images/icon/iconfont-iconfontuntitled92.png"
+		let fileIconProps = {
+			icon: "icon-file-alt"
 		};
 
 		return (
 			<div className = "breath-chat-interactivePane">
-				<div className = "toolBar">
+				<ul className = "toolBar">
+					<li className = "iconWrapper"> <Icon {...expressionIconProps}/> </li>
+					<li className = "iconWrapper"> <Icon {...fileIconProps}/> </li>
+				</ul>
+
+				<div className = "textareaWrapper">
 					<Textarea />
-
-					<GesturePane onTapHandler = {this.onExpressionButtonTapHandler} >
-						<Icon {...expressionButtonProps} />
-					</GesturePane>
-
-					<GesturePane onTapHandler = {this.onAddtionalButtonTapHandler}>
-						<Icon  {...additionalButtonProps}/>
-					</GesturePane>
-				</div>
-
-				<div className = "contentPane">
-					<h1>wanglei is cool</h1>
 				</div>
 			</div>
 		);
-	}	
-});
+	}
+}
+
+export default InteractivePane;

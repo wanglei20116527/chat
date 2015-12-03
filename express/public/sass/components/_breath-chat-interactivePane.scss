@@ -1,29 +1,47 @@
+$breath-chat-interactivePane-pc-width: 100% !default;
+$breath-chat-interactivePane-pc-height: 100% !default;
+
+$breath-chat-interactivePane-toolBar-pc-width: 100% !default;
+$breath-chat-interactivePane-toolBar-pc-height: 30px !default;
+$breath-chat-interactivePane-toolBar-pc-padding: 5px !default;
+
+$breath-chat-interactivepane-toolBar-icon-space: 10px !default;
+
+$breath-chat-interactivePane-textareaWrapper-pc-width: 100% !default;
+$breath-chat-interactivePane-textareaWrapper-pc-height: 100% !default;
+$breath-chat-interactivePane-textareaWrapper-pc-padding: $breath-chat-interactivePane-toolBar-pc-height 0 0 0;
+
 .breath-chat-interactivePane
 {
 	display: block;
+	position: relative;
+	width: $breath-chat-interactivePane-pc-width;
+	height: $breath-chat-interactivePane-pc-height;
 
 	.toolBar
 	{
-		@include flex;
-		@include flex-direction( row );
-		@include align-items( stretch );
+		position: relative;
+		z-index: 2;
+		width: $breath-chat-interactivePane-toolBar-pc-width;
+		height: $breath-chat-interactivePane-toolBar-pc-height;
+		padding: $breath-chat-interactivePane-toolBar-pc-padding;
 
-		& > *
-		{
-			margin: 0 4px;
-		}
+		.iconWrapper
+		{	
+			@include inline-block;
 
-		& > *:first-child
-		{
-
-			@include flex-grow( 1 );
-			@include align-self( flex-start );
+			margin-right: $breath-chat-interactivepane-toolBar-icon-space;
 		}
 	}
 
-	.contentPane
+	.textareaWrapper
 	{
-		width: 100%;
-		background-color: blue;
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: $breath-chat-interactivePane-textareaWrapper-pc-width;
+		height: $breath-chat-interactivePane-textareaWrapper-pc-height;
+		padding: $breath-chat-interactivePane-textareaWrapper-pc-padding;
 	}
 }

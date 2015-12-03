@@ -266,6 +266,11 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentDidMount: function componentDidMount() {
+		// new IScroll( this.refs.outerContainer );
+		// add scrollbar
+	},
+
 	onTouchStartHandler: function onTouchStartHandler(evt) {
 		evt.stopPropagation();
 	},

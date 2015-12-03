@@ -1,0 +1,12 @@
+$breath-chat-pc-width: 550px !default;
+$breath-chat-pc-height: auto !default;
+
+.breath-chat
+{
+	margin: 10px auto;
+	display: block;
+	width: $breath-chat-pc-width;
+	height: $breath-chat-pc-height;
+
+	box-shadow: 0 0 4px 0  rgba(0, 0, 0, .4);
+}

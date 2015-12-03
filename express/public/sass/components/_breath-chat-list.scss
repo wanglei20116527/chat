@@ -1,0 +1,9 @@
+.breath-chat-list
+{
+	@include inline-block;
+
+	.breath-chat-list-item
+	{
+		display: block;
+	}
+}

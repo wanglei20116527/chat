@@ -1,6 +1,8 @@
+$breath-chat-icon-color: #999999;
+
 .breath-chat-icon
 {
 	@include inline-block;
-	background-size: 100%;
-	background-repeat: no-repeat;
+	cursor: pointer;
+	color: $breath-chat-icon-color;
 }

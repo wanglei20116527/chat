@@ -1,0 +1,83 @@
+$breath-chat-user-list-width: 200px !default;
+$breath-chat-user-list-height: auto !default;
+
+$breath-chat-user-list-item-width: auto !default;
+$breath-chat-user-list-item-height: auto !default;
+
+$breath-chat-user-list-item-thumbnail-width: 46px !default;
+$breath-chat-user-list-item-thumbnail-height: 46px !default;
+$breath-chat-user-list-item-thumbnail-radius: 50% !default;
+
+$breath-chat-user-list-item-nickname-width: 100% !default;
+$breath-chat-user-list-item-nickname-height:100% !default;
+$breath-chat-user-list-item-nickname-line-height: 70px !default;
+$breath-chat-user-list-item-nickname-font-size: 18px !default;
+
+$breath-chat-user-list-item-number-message-to-read-width: 25px !default;
+$breath-chat-user-list-item-number-message-to-read-height: 25px !default;
+$breath-chat-user-list-item-number-message-to-read-line-height: 23px !default; 
+$breath-chat-user-list-item-number-message-to-read-background-color: #F76055 !default;
+$breath-chat-user-list-item-numbet-message-to-read-font-color: white !default;
+
+.breath-chat-user-list
+{
+	width: $breath-chat-user-list-width;
+	height: $breath-chat-user-list-height;
+
+	.user-list-item
+	{
+		@include clear("&");
+
+		position: relative;
+		padding: 10px;
+		width: $breath-chat-user-list-item-width;
+		height: $breath-chat-user-list-item-height;
+
+		.user-thumbnail
+		{
+			position: relative;
+			z-index: 2;
+
+			width: $breath-chat-user-list-item-thumbnail-width;
+			height: $breath-chat-user-list-item-thumbnail-height;
+			border-radius: $breath-chat-user-list-item-thumbnail-radius;
+		}
+
+		.user-nickname
+		{
+			@include text-overflow-ellipsis;
+
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			margin-left: 10px;
+
+			width: $breath-chat-user-list-item-nickname-width;
+			height: $breath-chat-user-list-item-nickname-height;
+			line-height: $breath-chat-user-list-item-nickname-line-height;
+			padding-left: $breath-chat-user-list-item-thumbnail-width + 10;
+			padding-right: $breath-chat-user-list-item-number-message-to-read-width + 10;
+			font-size: $breath-chat-user-list-item-nickname-font-size;
+		}
+
+		.number-message-to-read
+		{
+			position: absolute;
+			z-index: 3;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			text-align: center;
+			padding: 0 2px;
+
+			width: $breath-chat-user-list-item-number-message-to-read-width;
+			height: $breath-chat-user-list-item-number-message-to-read-height;
+			line-height: $breath-chat-user-list-item-number-message-to-read-line-height;
+			color: $breath-chat-user-list-item-numbet-message-to-read-font-color;
+			background-color: $breath-chat-user-list-item-number-message-to-read-background-color;
+		}
+
+	}
+}

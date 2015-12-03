@@ -1,16 +1,12 @@
+$breath-chat-messages-container-pc-width: 100% !default;
+$breath-chat-messages-container-pc-height: auto !default;
+
 .breath-chat-messages-container
 {
 	position: relative;
-	width: $breath-chat-messages-container-phone-width;
-	height: $breath-chat-messages-container-phone-height;
-	overflow: scroll;
-	-webkit-overflow-scrolling : touch;
-
-	@media screen and (min-width:$screen-md-min )
-	{
-		width: $breath-chat-messages-container-pc-width;
-		height: $breath-chat-messages-container-pc-height;
-	}
+	width: $breath-chat-messages-container-pc-width;
+	height: $breath-chat-messages-container-pc-height;
+	overflow-x: hidden;
 
 	.breath-chat-messages-inner-container
 	{

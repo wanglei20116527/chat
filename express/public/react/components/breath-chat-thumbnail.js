@@ -1,21 +1,32 @@
 let React = require("react");
+let Underscore = require( "underscore" );
 
-module.exports = React.createClass({
-	propTypes: function(){
-		// url: React.PropTypes.string.isRequired,
-	},
+class BreathChatThumbnail extends React.Component{
+	onClickHandler( evt ){
+		this.props.onClickHandler && this.props.onClickHandler( evt );
+	}
 
-	getDefaultProps: function(){
-		return {
-			url: "images/cd3ed493551d79846b19dc2a50de3cad.png",
-		};
-	},
+	render(){
+ 		let className = this.props.className + " breath-chat-thumbnail";
 
-	render: function(){
 		return (
-			<figure className = "breath-chat-thumbnail">
-				<img  className = "image" src = {this.props.url}/>
+			<figure className = { className } >
+				<img  className = "image" 
+				            src = { this.props.url } 
+				            onClick = { this.onClickHandler.bind(this) }/>
 			</figure>
 		);
 	}
-});
+}
+
+BreathChatThumbnail.propTypes = {
+	url: React.PropTypes.string.isRequired, 
+
+	onClickHandler: React.PropTypes.func
+};
+
+BreathChatThumbnail.defaultProps = {
+	url: "images/cd3ed493551d79846b19dc2a50de3cad.png"
+};
+
+export default BreathChatThumbnail;

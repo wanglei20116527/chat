@@ -1,14 +1,19 @@
-// bases
-@import "bases/reset";
-
 // helpers
 @import "helpers/variables";
 @import "helpers/mixin";
+
+// bases
+@import "bases/reset";
+
+// vendors
+@import "vendors/font-awesome/font-awesome";
 
 // components
 @import "components/breath-chat-icon";
 @import "components/breath-chat-label";
 @import "components/breath-chat-thumbnail";
+@import "components/breath-chat-list";
+@import "components/breath-chat-user-list";
 @import "components/breath-chat-message";
 @import "components/breath-chat-message-container";
 @import "components/breath-chat-textarea";
@@ -16,5 +21,6 @@
 @import "components/breath-chat-movableMenu";
 @import "components/breath-chat-gesturePane";
 @import "components/breath-chat-interactivePane";
+@import "components/breath-chat";
 
 

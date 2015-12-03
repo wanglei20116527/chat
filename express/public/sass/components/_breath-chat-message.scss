@@ -1,3 +1,12 @@
+$breath-chat-message-maxWidth: 75% !default;
+$breath-chat-message-radius: 5px !default;
+$breath-chat-message-font-size: 13px !default;
+$breath-chat-left-message-background:  #F4F4F4 !default;
+$breath-chat-right-message-background:  #66CEFF !default;
+$breath-chat-left-message-color: #999999 !default;
+$breath-chat-right-message-color: #fff !default;
+$breath-chat-message-arrow-vertical-offset: 4px !default;
+
 .breath-chat-message {
 	@include clear("&");
 	@include inline-block;

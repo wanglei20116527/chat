@@ -360,6 +360,11 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentDidMount: function(){
+		// new IScroll( this.refs.outerContainer );
+		// add scrollbar 
+	},
+
 	onTouchStartHandler: function( evt ){
 		evt.stopPropagation();	
 	},

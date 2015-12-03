@@ -1,58 +1,30 @@
 let React = require("react");
+let Underscore = require( "underscore" );
 
-module.exports = React.createClass({
-	propTypes: {
-		// properties
-		color: React.PropTypes.string,
-		fontSize: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-		fontFamily: React.PropTypes.string,
-		fontWeight: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-		width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-		height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]) , 
-		align: React.PropTypes.oneOf(["left", "right", "center", "justify"]),
-		background: React.PropTypes.string,
-		content: React.PropTypes.string,
-
-		// action
-		onClickHandler: React.PropTypes.func
-	},
-
-	getDefaultProps: function(){
-		return {
-			color: "#bdbdbd",
-			fontSize: "13px",
-			fontFamily: "Times New Roman",
-			fontWeight: "normal",
-			width: "auto",
-			height: "1em",
-			align: "left",
-			background: "white"
-		};
-	},
-
-	onClickHandler: function(evt){
-		console.log("wanglei is cool and kang is wanglei best friend");
-		console.log("houna is cute");
+class BreathChatLabel extends React.Component{
+	onClickHandler( evt ){
 		this.props.onClickHandler && this.props.onClickHandler.call(this, evt);
-	},
+	}
 
-	render: function(){
-		let style = {
-			width: this.props.width + " !important",
-			height: this.props.height + " !important",
-			color: this.props.color + " !important",
-			fontSize: this.props.fontSize + " !important",
-			fontWeight: this.props.fontWeight + " !important",
-			fontFamily: this.props.fontFamily + " !important",
-			textAlign: this.props.align + " !important",
-			background: this.props.background + " !important",
-			lineHeight: this.props.height + "!important"
-		};
+	render(){
+		let className = "breath-chat-label " + this.props.className;
 
 		return (
-			<p className = "breath-label"  style = {style} onClick = {this.onClickHandler}>
+			<p className =  { className }  
+			      onClick = { this.onClickHandler.bind(this) }>
+			      
 				{this.props.content}
 			</p>
 		);
 	}
-});
+}
+
+BreathChatLabel.propTypes = {
+	// action
+	onClickHandler: React.PropTypes.func
+};
+
+BreathChatLabel.defaultProps = {
+};
+
+export default BreathChatLabel;

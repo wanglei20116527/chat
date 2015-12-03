@@ -1,5 +1,37 @@
-.breath-chat-label
+$breath-chat-label-width: auto !default;
+$breath-chat-label-height: 1em !default;
+$breath-chat-label-radius: 0 !default;
+$breath-chat-label-font-weight: normal !default;
+$breath-chat-label-text-align: left !default;
+$breath-chat-label-background-color: white !default;
+$breath-chat-label-font-color: black !default;
+$breath-chat-label-font-size: 13px !default;
+$breath-chat-label-font-family: "Times New Roman" !default;
+
+%breath-chat-label
 {
 	@include inline-block;
+	@include text-overflow-ellipsis;
+
 	overflow: hidden;
+	width: $breath-chat-label-width;
+	height: $breath-chat-label-height;
+	line-height: $breath-chat-label-height;
+	border-radius: $breath-chat-label-radius;
+	font-weight: $breath-chat-label-font-weight;
+	text-align: $breath-chat-label-text-align;
+	background-color: $breath-chat-label-background-color;
+	color: $breath-chat-label-font-color;
+	font-size: $breath-chat-label-font-size;
+	font-family: $breath-chat-label-font-family;
+}
+
+.breath-chat-label
+{
+	@extend %breath-chat-label;
+
+	&.circle
+	{
+		border-radius: 50%;
+	}
 }
