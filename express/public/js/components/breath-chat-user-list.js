@@ -35,16 +35,16 @@ var _breathChatLabel2 = _interopRequireDefault(_breathChatLabel);
 var React = require('react');
 var UnderScore = require('underscore');
 
-var UserList = (function (_React$Component) {
-	_inherits(UserList, _React$Component);
+var BreathChatUserList = (function (_React$Component) {
+	_inherits(BreathChatUserList, _React$Component);
 
-	function UserList() {
-		_classCallCheck(this, UserList);
+	function BreathChatUserList() {
+		_classCallCheck(this, BreathChatUserList);
 
-		_get(Object.getPrototypeOf(UserList.prototype), 'constructor', this).apply(this, arguments);
+		_get(Object.getPrototypeOf(BreathChatUserList.prototype), 'constructor', this).apply(this, arguments);
 	}
 
-	_createClass(UserList, [{
+	_createClass(BreathChatUserList, [{
 		key: 'render',
 		value: function render() {
 			var userListItems = UnderScore.map(this.props.userInfors, function (userInfor) {
@@ -84,17 +84,42 @@ var UserList = (function (_React$Component) {
 		}
 	}]);
 
-	return UserList;
+	return BreathChatUserList;
 })(React.Component);
 
-UserList.defaultProps = {
+BreathChatUserList.defaultProps = {
 	userInfors: [{
 		id: "wanglei",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "breath",
+		numberOfMessageUnread: "10+"
+	}, {
+		id: "wanglei1",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "breath",
+		numberOfMessageUnread: "10+"
+	}, {
+		id: "wanglei2",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "breath",
+		numberOfMessageUnread: "10+"
+	}, {
+		id: "wanglei3",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "breath",
+		numberOfMessageUnread: "10+"
+	}, {
+		id: "wanglei4",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "breath",
+		numberOfMessageUnread: "10+"
+	}, {
+		id: "wanglei5",
 		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
 		nickname: "breath",
 		numberOfMessageUnread: "10+"
 	}]
 };
 
-exports['default'] = UserList;
+exports['default'] = BreathChatUserList;
 module.exports = exports['default'];

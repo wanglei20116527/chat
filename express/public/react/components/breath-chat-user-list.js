@@ -6,7 +6,7 @@ import List from "./breath-chat-list";
 import ListItem from "./breath-chat-list-item";
 import Label from "./breath-chat-label";
 
-class UserList extends React.Component{
+class BreathChatUserList extends React.Component{
 	render(){
 		let userListItems = UnderScore.map(this.props.userInfors, function( userInfor ){
 			let listItemProps = {
@@ -45,15 +45,51 @@ class UserList extends React.Component{
 	}
 }
 
-UserList.defaultProps = {
+BreathChatUserList.defaultProps = {
 	userInfors: [
 		{
 			id: "wanglei",
 			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
 			nickname: "breath",
 			numberOfMessageUnread: "10+"
+		},
+
+		{
+			id: "wanglei1",
+			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+			nickname: "breath",
+			numberOfMessageUnread: "10+"
+		},
+
+		{
+			id: "wanglei2",
+			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+			nickname: "breath",
+			numberOfMessageUnread: "10+"
+		},
+
+		{
+			id: "wanglei3",
+			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+			nickname: "breath",
+			numberOfMessageUnread: "10+"
+		},
+
+		{
+			id: "wanglei4",
+			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+			nickname: "breath",
+			numberOfMessageUnread: "10+"
+		},
+
+		{
+			id: "wanglei5",
+			thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+			nickname: "breath",
+			numberOfMessageUnread: "10+"
 		}
+
 	]
 };
 
-export default UserList;
+export default BreathChatUserList;

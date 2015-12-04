@@ -1,33 +1,39 @@
 "use strict";
 
-var React = require("react");
-
-var BreathChatPath = require("./breath-chat-path");
-
-module.exports = React.createClass({
-	displayName: "exports",
-
-	propTypes: {
-		width: React.PropTypes.number.isRequired,
-		height: React.PropTypes.number.isRequired,
-		d: React.PropTypes.string.isRequired,
-		fill: React.PropTypes.string
-	},
-
-	getDefaultProps: function getDefaultProps() {
-		return {
-			width: 7,
-			height: 12,
-			fill: "#66CEFF",
-			d: "M-1,1c0,0,8-0.188,8,0.047s0,1.875,0,1.875L-1,11"
-		};
-	},
-
-	render: function render() {
-		return React.createElement(
-			"svg",
-			{ className: this.props.className, width: this.props.width + "px", height: this.props.height + "px", xmlns: "http://www.w3.org/2000/svg" },
-			React.createElement(BreathChatPath, { fill: this.props.fill, d: this.props.d })
-		);
-	}
+Object.defineProperty(exports, "__esModule", {
+	value: true
 });
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _breathChatArrow = require("./breath-chat-arrow");
+
+var _breathChatArrow2 = _interopRequireDefault(_breathChatArrow);
+
+var BreathChatArrowRight = (function (_BreathChatArrow) {
+	_inherits(BreathChatArrowRight, _BreathChatArrow);
+
+	function BreathChatArrowRight() {
+		_classCallCheck(this, BreathChatArrowRight);
+
+		_get(Object.getPrototypeOf(BreathChatArrowRight.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	return BreathChatArrowRight;
+})(_breathChatArrow2["default"]);
+
+BreathChatArrowRight.defaultProps = {
+	width: 7,
+	height: 12,
+	fill: "#66CEFF",
+	d: "M-1,1c0,0,8-0.188,8,0.047s0,1.875,0,1.875L-1,11"
+};
+
+exports["default"] = BreathChatArrowRight;
+module.exports = exports["default"];

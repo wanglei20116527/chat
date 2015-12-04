@@ -1,5 +1,4 @@
 let React = require("react");
-let Underscore = require( "underscore" );
 
 class BreathChatLabel extends React.Component{
 	onClickHandler( evt ){
@@ -7,7 +6,7 @@ class BreathChatLabel extends React.Component{
 	}
 
 	render(){
-		let className = "breath-chat-label " + this.props.className;
+		let className = "breath-chat-label " + ( this.props.className || "" );
 
 		return (
 			<p className =  { className }  
@@ -20,7 +19,6 @@ class BreathChatLabel extends React.Component{
 }
 
 BreathChatLabel.propTypes = {
-	// action
 	onClickHandler: React.PropTypes.func
 };
 

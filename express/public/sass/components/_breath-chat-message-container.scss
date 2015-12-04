@@ -15,6 +15,16 @@ $breath-chat-messages-container-pc-height: auto !default;
 		width: 100%;
 		padding: 20px 0;
 
+		.breath-chat-date-message-container
+		{
+			text-align: center;
+
+			.breath-chat-label
+			{	
+				font-size: 14px;
+				color: #bdbdbd;
+			}
+		}
 
 		.breath-chat-message-container
 		{

@@ -1,18 +1,73 @@
 let React = require("react");
 let ReactDOM = require("react-dom");
 
-let IScroll = require("iscroll");
 
 let Constants = require("../constants/breath-chat-constants");
-let Label = require("./breath-chat-label");
-let Thumbnail = require("./breath-chat-thumbnail");
-let LeftMessage = require("./breath-chat-message-left");
-let RightMessage = require("./breath-chat-message-right");
 
-module.exports = React.createClass({
-	getDefaultProps: function(){
-		return {
-			messages:[
+// import components
+import Label from "./breath-chat-label";
+import Thumbnail from "./breath-chat-thumbnail";
+import LeftMessage from "./breath-chat-message-left";
+import RightMessage from "./breath-chat-message-right";
+
+
+class BreathChatMessageContainer extends React.Component{
+	componentDidMount(){
+	}
+
+	render(){
+		let messagesWrappers = this.props.messages.map(function( message ){
+			let messageWrapper;
+			let props;
+
+			switch( message.type ){
+				case Constants.MessageType.TIMESTAMP:
+					props = {
+						// width: message.width,
+						content: message.content,
+						align: message.align
+					};
+					messageWrapper =  <li  className = "breath-chat-date-message-container" key = { message.id }>
+					 			<Label {...props}  /> 
+					 		        </li>;
+					break;
+
+				case Constants.MessageType.MESSAGE:
+					props = {
+						content: message.content
+					};
+					if( message.align == Constants.MessageAlign.LEFT ){
+						messageWrapper =	<li className = "breath-chat-message-container left" key = {message.id}>
+										<Thumbnail />
+										<LeftMessage {...props}/>
+								 	</li> ;
+					}else{
+						messageWrapper =	 <li className = "breath-chat-message-container right" key = {message.id}>
+										<Thumbnail />
+										<RightMessage {...props}/>
+								 	</li> ;
+					}
+					break;
+
+				default: 
+					throw new Error("message type " + message.type  + " is not recognized");
+			}
+
+			return messageWrapper;
+		});
+
+		return (
+			<div ref = "outerContainer" className = "breath-chat-messages-container" >
+				<ul className = "breath-chat-messages-inner-container" >
+					{messagesWrappers}
+				</ul>
+			</div>
+		);
+	}
+}
+
+BreathChatMessageContainer.defaultProps = {
+	messages:[
 				{
 					id : Date.now(),
 					type: Constants.MessageType.TIMESTAMP,
@@ -357,63 +412,6 @@ module.exports = React.createClass({
 					content: "wanglei is cool and kang is wanglei best and houna is cute"
 				}
 			]
-		};
-	},
+};
 
-	componentDidMount: function(){
-		// new IScroll( this.refs.outerContainer );
-		// add scrollbar 
-	},
-
-	onTouchStartHandler: function( evt ){
-		evt.stopPropagation();	
-	},
-
-	render: function(){
-		let messagesWrappers = this.props.messages.map(function( message ){
-			let messageWrapper;
-			let props;
-
-			switch( message.type ){
-				case Constants.MessageType.TIMESTAMP:
-					props = {
-						width: message.width,
-						content: message.content,
-						align: message.align
-					};
-					messageWrapper =  <li  key = { message.id }> <Label {...props}  /> </li>;
-					break;
-
-				case Constants.MessageType.MESSAGE:
-					props = {
-						content: message.content
-					};
-					if( message.align == Constants.MessageAlign.LEFT ){
-						messageWrapper =	<li className = "breath-chat-message-container left" key = {message.id}>
-										<Thumbnail />
-										<LeftMessage {...props}/>
-								 	</li> ;
-					}else{
-						messageWrapper =	 <li className = "breath-chat-message-container right" key = {message.id}>
-										<Thumbnail />
-										<RightMessage {...props}/>
-								 	</li> ;
-					}
-					break;
-
-				default: 
-					throw new Error("message type " + message.type  + " is not recognized");
-			}
-
-			return messageWrapper;
-		});
-
-		return (
-			<div className = "breath-chat-messages-container" ref = "outerContainer">
-				<ul className = "breath-chat-messages-inner-container" onTouchStart = {this.onTouchStartHandler} >
-					{messagesWrappers}
-				</ul>
-			</div>
-		);
-	}	
-}) ;
+export default BreathChatMessageContainer;

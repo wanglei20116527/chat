@@ -18,9 +18,11 @@ var _breathChatInteractivePane = require("./breath-chat-interactivePane");
 
 var _breathChatInteractivePane2 = _interopRequireDefault(_breathChatInteractivePane);
 
-var React = require("react");
+var _breathChatMessageContainer = require("./breath-chat-message-container");
 
-var MessageContainer = require("./breath-chat-message-container");
+var _breathChatMessageContainer2 = _interopRequireDefault(_breathChatMessageContainer);
+
+var React = require("react");
 
 var BreathChatCommunicatePane = (function (_React$Component) {
 	_inherits(BreathChatCommunicatePane, _React$Component);
@@ -33,31 +35,26 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 
 	_createClass(BreathChatCommunicatePane, [{
 		key: "componentDidMount",
-		value: function componentDidMount() {
-			console.log("wanglei is cool and houna is cute");
-		}
+		value: function componentDidMount() {}
 	}, {
 		key: "onMouseMovehandler",
 		value: function onMouseMovehandler(evt) {}
 	}, {
 		key: "onMouseDownHandler",
 		value: function onMouseDownHandler(evt) {
-			// console.log( "wanglei is cool" );
 
-			console.log(evt.currentTarget);
-
-			if (window.captureEvents) {
-				window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
-			}
+			// if( window.captureEvents ){
+			// 	window.captureEvents( Event.MOUSEMOVE | Event.MOUSEUP );
+			// }
 		}
 	}, {
 		key: "onMouseUpHandler",
 		value: function onMouseUpHandler(evt) {
 			// console.log( "houna is cute" );
 
-			if (window.releaseCapture) {
-				window.releaseEvents(Event.MOUSEMOVE | Event.MOUSEUP);
-			}
+			// if( window.releaseCapture ){
+			// 	window.releaseEvents( Event.MOUSEMOVE | Event.MOUSEUP );
+			// }
 			// evt.currentTarget.releaseCapture();
 			//
 		}
@@ -66,10 +63,7 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 		value: function render() {
 			return React.createElement(
 				"div",
-				{ className: "breath-chat-communicatePane"
-					/*onMouseMove = {this.onMouseMovehandler.bind(this) } 
-     onMouseDown = {this.onMouseDownHandler.bind(this) }
-     onMouseUp = {this.onMouseUpHandler.bind(this) }*/ },
+				{ className: "breath-chat-communicatePane" },
 				React.createElement(
 					"div",
 					{ className: "headerBar" },
@@ -82,7 +76,7 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 				React.createElement(
 					"div",
 					{ className: "messageArea" },
-					React.createElement(MessageContainer, null)
+					React.createElement(_breathChatMessageContainer2["default"], null)
 				),
 				React.createElement(
 					"div",

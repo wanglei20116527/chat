@@ -32,7 +32,7 @@ var BreathChatList = (function (_React$Component) {
 	_createClass(BreathChatList, [{
 		key: "render",
 		value: function render() {
-			var className = this.props.className + " breath-chat-list";
+			var className = "breath-chat-list " + (this.props.className || "");
 			return React.createElement(
 				"ul",
 				{ className: className },
@@ -46,10 +46,6 @@ var BreathChatList = (function (_React$Component) {
 
 BreathChatList.propTypes = {
 	className: React.PropTypes.string
-};
-
-BreathChatList.defaultProps = {
-	className: ""
 };
 
 exports["default"] = BreathChatList;

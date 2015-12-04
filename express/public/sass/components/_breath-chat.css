@@ -1,7 +1,7 @@
 .breath-chat {
-  margin: 10px auto;
   display: block;
-  width: 550px;
+  margin: 10px auto;
+  width: auto;
   height: auto;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4); }
 

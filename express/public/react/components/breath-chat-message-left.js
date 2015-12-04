@@ -1,13 +1,9 @@
 let React = require("react");
 
-let BreathChatArrowLeft = require("./breath-chat-arrow-left");
+import BreathChatArrowLeft from "./breath-chat-arrow-left";
 
-module.exports = React.createClass({
-	propTypes: {
-		content: React.PropTypes.string.isRequired
-	},
-
-	render: function(){
+class BreathChatMessageLeft extends React.Component{
+	render(){
 		return (
 			<div  className = "breath-chat-message left" >
 				<div className = "arrow-container">
@@ -17,4 +13,10 @@ module.exports = React.createClass({
 			</div>
 		);
 	}
-});
+}
+
+BreathChatMessageLeft.propTypes = {
+	content: React.PropTypes.string.isRequired
+};
+
+export default BreathChatMessageLeft;

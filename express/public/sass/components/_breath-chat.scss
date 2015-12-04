@@ -1,12 +1,36 @@
-$breath-chat-pc-width: 550px !default;
+$breath-chat-pc-width: auto !default;
 $breath-chat-pc-height: auto !default;
 
 .breath-chat
 {
-	margin: 10px auto;
-	display: block;
+	@include clear( "&" );
+	@include inline-block;
+
+	margin: 10px 0 0 200px;
+	box-shadow: 0 0 4px 0  rgba(0, 0, 0, .4);
+
 	width: $breath-chat-pc-width;
 	height: $breath-chat-pc-height;
 
-	box-shadow: 0 0 4px 0  rgba(0, 0, 0, .4);
+	.breath-chat-toolPane,
+	.breath-chat-userListPane,
+	.breath-chat-communicatePane
+	{
+		float: left;
+		height: 100%;
+		position: relative;
+	}
+
+	
+
+	.breath-chat-userListPane
+	{
+		z-index: 2;
+	}
+
+	.breath-chat-communicatePane
+	{
+		z-index: 3;
+	}
+
 }

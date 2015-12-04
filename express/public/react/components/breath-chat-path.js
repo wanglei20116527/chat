@@ -1,15 +1,16 @@
 let React = require("react");
 
-module.exports = React.createClass({
-	propTypes:{
-		d    : React.PropTypes.string.isRequired,
-		fill   : React.PropTypes.string  
-		
-	},
-	
-	render: function(){
+class BreathChatPath extends React.Component{
+	render(){
 		return (
 			<path fill={this.props.fill} d={this.props.d}></path>
 		);
 	}
-});
+}
+
+BreathChatPath.propTypes = {
+	d  : React.PropTypes.string.isRequired,
+	fill: React.PropTypes.string  
+};
+
+export default BreathChatPath;
