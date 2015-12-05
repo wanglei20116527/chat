@@ -1,3 +1,4 @@
+// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18,7 +19,24 @@ var _breathChatUserList = require("./breath-chat-user-list");
 
 var _breathChatUserList2 = _interopRequireDefault(_breathChatUserList);
 
+// import constants
+
+var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
+
+var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
+
+// import stores
+
+var _storesBreathChatUserStore = require("../stores/breath-chat-user-store");
+
+var _storesBreathChatUserStore2 = _interopRequireDefault(_storesBreathChatUserStore);
+
+// import { autobind } from "core-decorators";
+
 var React = require("react");
+var UnderScore = require('underscore');
+
+var EventConstants = _constantsBreathChatConstants2["default"].Event;
 
 var UserListPane = (function (_React$Component) {
 	_inherits(UserListPane, _React$Component);
@@ -26,23 +44,57 @@ var UserListPane = (function (_React$Component) {
 	function UserListPane() {
 		_classCallCheck(this, UserListPane);
 
-		_get(Object.getPrototypeOf(UserListPane.prototype), "constructor", this).apply(this, arguments);
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		_get(Object.getPrototypeOf(UserListPane.prototype), "constructor", this).apply(this, args);
+
+		this.state = {
+			activeUser: _storesBreathChatUserStore2["default"].getActiveContact(),
+			users: _storesBreathChatUserStore2["default"].getCurrentUserContacts()
+		};
 	}
 
 	_createClass(UserListPane, [{
 		key: "componentDidMount",
 		value: function componentDidMount() {
-			console.log("wanglei is cool and kang is wanglei best friend ");
+			var events = [{
+				name: EventConstants.ACTIVE_CONTACT_CHANGE,
+				callback: this.updateActiveUser.bind(this)
+			}];
+
+			UnderScore.map(events, function (evt) {
+				_storesBreathChatUserStore2["default"].on(evt.name, evt.callback);
+			});
 		}
 	}, {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
-			console.log("wanglei is cool and houna is cute");
+			var events = [EventConstants.ACTIVE_CONTACT_CHANGE];
+
+			UnderScore.map(events, function (evt) {
+				_storesBreathChatUserStore2["default"].removeListener(evt);
+			});
+		}
+
+		// @autobind
+	}, {
+		key: "updateActiveUser",
+		value: function updateActiveUser() {
+			this.setState({
+				activeUser: _storesBreathChatUserStore2["default"].getActiveContact()
+			});
 		}
 	}, {
 		key: "render",
 		value: function render() {
 			var className = "breath-chat-userListPane";
+
+			var userListProps = {
+				activeUser: this.state.activeUser,
+				users: this.state.users
+			};
 
 			return React.createElement(
 				"div",
@@ -51,7 +103,7 @@ var UserListPane = (function (_React$Component) {
 				React.createElement(
 					"div",
 					{ className: "userListArea" },
-					React.createElement(_breathChatUserList2["default"], null)
+					React.createElement(_breathChatUserList2["default"], userListProps)
 				)
 			);
 		}

@@ -6,11 +6,13 @@ class BreathChatListItem extends React.Component{
 	}
 
 	render(){
-		let className = this.props.className + " breath-chat-list-item";
+		let props = {
+			onClick: this.onClickHandler.bind(this),
+			className: "breath-chat-list-item " + ( this.props.className || "" ),
+		};
 
 		return (
-			<li className = { className } 
-			     onClick = { this.onClickHandler.bind(this) }>
+			<li {...props}>
 				{this.props.children}
 			</li>
 		);

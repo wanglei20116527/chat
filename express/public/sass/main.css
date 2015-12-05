@@ -1515,6 +1515,7 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   width: 100%;
   height: auto; }
   .breath-chat-user-list .user-list-item {
+    cursor: pointer;
     position: relative;
     width: auto;
     height: auto;
@@ -1529,7 +1530,7 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
       *zoom: 1; }
     .breath-chat-user-list .user-list-item:after {
       clear: both; }
-    .breath-chat-user-list .user-list-item.selected {
+    .breath-chat-user-list .user-list-item.active {
       background-color: #E8E7E7; }
     .breath-chat-user-list .user-list-item .user-thumbnail {
       position: relative;

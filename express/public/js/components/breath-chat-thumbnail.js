@@ -32,7 +32,7 @@ var BreathChatThumbnail = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
-			var className = this.props.className + " breath-chat-thumbnail";
+			var className = "breath-chat-thumbnail " + (this.props.className || "");
 
 			return React.createElement(
 				"figure",

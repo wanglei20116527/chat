@@ -35,6 +35,7 @@ $breath-chat-user-list-item-numbet-message-to-read-font-color: white !default;
 	{
 		@include clear("&");
 
+		cursor: pointer;
 		position: relative;
 		width: $breath-chat-user-list-item-width;
 		height: $breath-chat-user-list-item-height;
@@ -44,7 +45,7 @@ $breath-chat-user-list-item-numbet-message-to-read-font-color: white !default;
 		padding-right: $breath-chat-user-list-item-padding-right;
 		background-color: $breath-chat-user-list-item-backgroundColor;
 
-		&.selected
+		&.active
 		{
 			background-color: $breath-chat-user-list-item-backgroundColor-selected;
 		}

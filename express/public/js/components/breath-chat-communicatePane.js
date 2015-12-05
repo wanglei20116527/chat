@@ -1,3 +1,4 @@
+// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22,7 +23,26 @@ var _breathChatMessageContainer = require("./breath-chat-message-container");
 
 var _breathChatMessageContainer2 = _interopRequireDefault(_breathChatMessageContainer);
 
+// import constants
+
+var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
+
+var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
+
+// import stores
+
+var _storesBreathChatUserStore = require("../stores/breath-chat-user-store");
+
+var _storesBreathChatUserStore2 = _interopRequireDefault(_storesBreathChatUserStore);
+
+var _storesBreathChatMessageStore = require("../stores/breath-chat-message-store");
+
+var _storesBreathChatMessageStore2 = _interopRequireDefault(_storesBreathChatMessageStore);
+
 var React = require("react");
+var Underscore = require("underscore");
+
+var EventConstants = _constantsBreathChatConstants2["default"].Event;
 
 var BreathChatCommunicatePane = (function (_React$Component) {
 	_inherits(BreathChatCommunicatePane, _React$Component);
@@ -30,12 +50,44 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 	function BreathChatCommunicatePane() {
 		_classCallCheck(this, BreathChatCommunicatePane);
 
-		_get(Object.getPrototypeOf(BreathChatCommunicatePane.prototype), "constructor", this).apply(this, arguments);
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		_get(Object.getPrototypeOf(BreathChatCommunicatePane.prototype), "constructor", this).apply(this, args);
+
+		var currentUser = _storesBreathChatUserStore2["default"].getCurrentUser();
+		var activeContact = _storesBreathChatUserStore2["default"].getActiveContact();
+		var messages = _storesBreathChatMessageStore2["default"].getMessagesByContactId(activeContact.id);
+
+		this.state = {
+			currentUser: currentUser,
+			activeContact: activeContact,
+			messages: messages
+		};
 	}
 
 	_createClass(BreathChatCommunicatePane, [{
 		key: "componentDidMount",
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			var events = [{
+				name: EventConstants.ACTIVE_CONTACT_CHANGE,
+				callback: this.updateActiveContact.bind(this)
+			}];
+
+			Underscore.map(events, function (evt) {
+				_storesBreathChatMessageStore2["default"].on(evt.name, evt.callback);
+			});
+		}
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			var events = [EventConstants.ACTIVE_CONTACT_CHANGE];
+
+			Underscore.map(events, function (evt) {
+				_storesBreathChatUserStore2["default"].removeListener(evt);
+			});
+		}
 	}, {
 		key: "onMouseMovehandler",
 		value: function onMouseMovehandler(evt) {}
@@ -59,8 +111,27 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 			//
 		}
 	}, {
+		key: "updateActiveContact",
+		value: function updateActiveContact() {
+			var activeContact = _storesBreathChatUserStore2["default"].getActiveContact();
+			var messages = _storesBreathChatMessageStore2["default"].getMessagesByContactId(activeContact.id);
+
+			this.setState({
+				activeContact: activeContact,
+				messages: messages
+			});
+		}
+	}, {
 		key: "render",
 		value: function render() {
+			var activeContactName = this.state.activeContact.nickname;
+
+			var messageAreaProps = {
+				currentUser: this.state.currentUser,
+				activeContact: this.state.activeContact,
+				messages: this.state.messages
+			};
+
 			return React.createElement(
 				"div",
 				{ className: "breath-chat-communicatePane" },
@@ -70,13 +141,13 @@ var BreathChatCommunicatePane = (function (_React$Component) {
 					React.createElement(
 						"span",
 						null,
-						"wanglei is cool and houna is cute"
+						activeContactName
 					)
 				),
 				React.createElement(
 					"div",
 					{ className: "messageArea" },
-					React.createElement(_breathChatMessageContainer2["default"], null)
+					React.createElement(_breathChatMessageContainer2["default"], messageAreaProps)
 				),
 				React.createElement(
 					"div",

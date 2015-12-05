@@ -7,7 +7,7 @@ class BreathChatThumbnail extends React.Component{
 	}
 
 	render(){
- 		let className = this.props.className + " breath-chat-thumbnail";
+ 		let className = "breath-chat-thumbnail "  + ( this.props.className || "" );
 
 		return (
 			<figure className = { className } >

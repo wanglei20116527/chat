@@ -9,4 +9,9 @@ var _componentsBreathChat2 = _interopRequireDefault(_componentsBreathChat);
 var React = require("react");
 var ReactDOM = require("react-dom");
 
+var jquery = require('jquery');
+require('jquery.scrollbar');
+
+debugger;
+
 ReactDOM.render(React.createElement(_componentsBreathChat2["default"], null), document.getElementById("breath-chat"));

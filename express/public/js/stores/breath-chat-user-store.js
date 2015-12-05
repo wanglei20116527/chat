@@ -1,0 +1,124 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+
+var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+
+var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
+
+var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
+
+var Underscore = require('underscore');
+var EventEmitter = require('events').EventEmitter;
+
+var EventConstants = _constantsBreathChatConstants2["default"].Event;
+var ActionConstants = _constantsBreathChatConstants2["default"].Action;
+
+var Users = {
+	1: {
+		id: 1,
+		nickname: "wanglei",
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png"
+	},
+
+	2: {
+		id: 2,
+		nickname: "houna",
+		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
+	},
+
+	3: {
+		id: 3,
+		nickname: "kang",
+		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
+	},
+
+	4: {
+		id: 4,
+		nickname: "houna",
+		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
+	},
+
+	5: {
+		id: 5,
+		nickname: "kang",
+		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
+	}
+};
+
+var _user = {
+	currentUserId: 1,
+	activeContactId: 2,
+	contantIds: [2, 3, 4, 5]
+};
+
+var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
+	switch (action.type) {
+		case ActionConstants.ACTIVE_CONTACT_CHANGE:
+			_user.activeContactId = action.data.id;
+
+			userStore.emit(EventConstants.ACTIVE_CONTACT_CHANGE);
+			break;
+	}
+});
+
+var BreathChatUserStore = (function (_EventEmitter) {
+	_inherits(BreathChatUserStore, _EventEmitter);
+
+	function BreathChatUserStore() {
+		_classCallCheck(this, BreathChatUserStore);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		_get(Object.getPrototypeOf(BreathChatUserStore.prototype), "constructor", this).apply(this, args);
+
+		this.dispatchToken = _dispatchToken;
+	}
+
+	_createClass(BreathChatUserStore, [{
+		key: "getUserById",
+		value: function getUserById(id) {
+			return Users[id];
+		}
+	}, {
+		key: "getCurrentUser",
+		value: function getCurrentUser() {
+			return this.getUserById(_user.currentUserId);
+		}
+	}, {
+		key: "getActiveContact",
+		value: function getActiveContact() {
+			return this.getUserById(_user.activeContactId);
+		}
+	}, {
+		key: "getCurrentUserContacts",
+		value: function getCurrentUserContacts() {
+			return Underscore.map(_user.contantIds, (function (contantId) {
+				return this.getUserById(contantId);
+			}).bind(this));
+		}
+	}]);
+
+	return BreathChatUserStore;
+})(EventEmitter);
+
+var userStore = new BreathChatUserStore();
+
+exports["default"] = userStore;
+module.exports = exports["default"];

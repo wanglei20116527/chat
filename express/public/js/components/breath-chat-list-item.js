@@ -31,12 +31,14 @@ var BreathChatListItem = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
-			var className = this.props.className + " breath-chat-list-item";
+			var props = {
+				onClick: this.onClickHandler.bind(this),
+				className: "breath-chat-list-item " + (this.props.className || "")
+			};
 
 			return React.createElement(
 				"li",
-				{ className: className,
-					onClick: this.onClickHandler.bind(this) },
+				props,
 				this.props.children
 			);
 		}
