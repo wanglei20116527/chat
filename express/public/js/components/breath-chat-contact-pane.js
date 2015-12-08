@@ -1,3 +1,4 @@
+// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14,111 +15,100 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+var _breathChatContactList = require("./breath-chat-contact-list");
 
-var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+var _breathChatContactList2 = _interopRequireDefault(_breathChatContactList);
+
+// import constants
 
 var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
-var Underscore = require('underscore');
-var EventEmitter = require('events').EventEmitter;
+// import stores
+
+var _storesBreathChatContactStore = require("../stores/breath-chat-contact-store");
+
+var _storesBreathChatContactStore2 = _interopRequireDefault(_storesBreathChatContactStore);
+
+var React = require("react");
+var UnderScore = require('underscore');
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
-var ActionConstants = _constantsBreathChatConstants2["default"].Action;
 
-var Users = {
-	1: {
-		id: 1,
-		nickname: "wanglei",
-		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png"
-	},
+var BreathChatContactPane = (function (_React$Component) {
+	_inherits(BreathChatContactPane, _React$Component);
 
-	2: {
-		id: 2,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	3: {
-		id: 3,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
-	},
-
-	4: {
-		id: 4,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	5: {
-		id: 5,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
-	}
-};
-
-var _user = {
-	currentUserId: 1,
-	activeContactId: 2,
-	contantIds: [2, 3, 4, 5]
-};
-
-var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
-	switch (action.type) {
-		case ActionConstants.CHANGE_ACTIVE_CONTACT:
-			_user.activeContactId = action.data.id;
-
-			userStore.emit(EventConstants.CHANGE_ACTIVE_CONTACT);
-			break;
-	}
-});
-
-var BreathChatUserStore = (function (_EventEmitter) {
-	_inherits(BreathChatUserStore, _EventEmitter);
-
-	function BreathChatUserStore() {
-		_classCallCheck(this, BreathChatUserStore);
+	function BreathChatContactPane() {
+		_classCallCheck(this, BreathChatContactPane);
 
 		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 			args[_key] = arguments[_key];
 		}
 
-		_get(Object.getPrototypeOf(BreathChatUserStore.prototype), "constructor", this).apply(this, args);
+		_get(Object.getPrototypeOf(BreathChatContactPane.prototype), "constructor", this).apply(this, args);
 
-		this.dispatchToken = _dispatchToken;
+		this.state = {
+			activeContact: _storesBreathChatContactStore2["default"].getActiveContact(),
+			contacts: _storesBreathChatContactStore2["default"].getContacts()
+		};
 	}
 
-	_createClass(BreathChatUserStore, [{
-		key: "getUserById",
-		value: function getUserById(id) {
-			return Users[id];
+	_createClass(BreathChatContactPane, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var events = [{
+				name: EventConstants.CHANGE_ACTIVE_CONTACT,
+				callback: this.updateActiveContact.bind(this)
+			}];
+
+			UnderScore.map(events, function (evt) {
+				_storesBreathChatContactStore2["default"].on(evt.name, evt.callback);
+			});
 		}
 	}, {
-		key: "getCurrentUser",
-		value: function getCurrentUser() {
-			return this.getUserById(_user.currentUserId);
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			var events = [EventConstants.CHANGE_ACTIVE_CONTACT];
+
+			UnderScore.map(events, function (evt) {
+				_storesBreathChatContactStore2["default"].removeListener(evt);
+			});
+		}
+
+		// @autobind
+	}, {
+		key: "updateActiveContact",
+		value: function updateActiveContact() {
+			this.setState({
+				activeContact: _storesBreathChatContactStore2["default"].getActiveContact()
+			});
 		}
 	}, {
-		key: "getActiveContact",
-		value: function getActiveContact() {
-			return this.getUserById(_user.activeContactId);
-		}
-	}, {
-		key: "getCurrentUserContacts",
-		value: function getCurrentUserContacts() {
-			return Underscore.map(_user.contantIds, (function (contantId) {
-				return this.getUserById(contantId);
-			}).bind(this));
+		key: "render",
+		value: function render() {
+			var className = "breath-chat-contactPane";
+
+			var contactListProps = {
+				activeContact: this.state.activeContact,
+				contacts: this.state.contacts
+			};
+
+			return React.createElement(
+				"div",
+				{ className: className },
+				React.createElement("div", { className: "headerBar" }),
+				React.createElement(
+					"div",
+					{ className: "contactListArea" },
+					React.createElement(_breathChatContactList2["default"], contactListProps)
+				)
+			);
 		}
 	}]);
 
-	return BreathChatUserStore;
-})(EventEmitter);
+	return BreathChatContactPane;
+})(React.Component);
 
-var userStore = new BreathChatUserStore();
-
-exports["default"] = userStore;
+exports["default"] = BreathChatContactPane;
 module.exports = exports["default"];

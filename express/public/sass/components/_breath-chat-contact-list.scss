@@ -1,0 +1,100 @@
+$breath-chat-contact-list-width: 100% !default;
+$breath-chat-contact-list-height: auto !default;
+
+$breath-chat-contact-list-item-width: auto !default;
+$breath-chat-contact-list-item-height: auto !default;
+$breath-chat-contact-list-item-padding-top: 7px !default;
+$breath-chat-contact-list-item-padding-bottom: 7px !default;
+$breath-chat-contact-list-item-padding-left: 15px !default;
+$breath-chat-contact-list-item-padding-right: 20px !default;
+$breath-chat-contact-list-item-backgroundColor: transparent !default;
+$breath-chat-contact-list-item-backgroundColor-selected:  #E8E7E7 !default;
+
+$breath-chat-contact-list-item-thumbnail-width: 40px !default;
+$breath-chat-contact-list-item-thumbnail-height: 40px !default;
+$breath-chat-contact-list-item-thumbnail-radius: 50% !default;
+
+$breath-chat-contact-list-item-nickname-width: 100% !default;
+$breath-chat-contact-list-item-nickname-height:100% !default;
+$breath-chat-contact-list-item-nickname-line-height: 60px !default;
+$breath-chat-contact-list-item-nickname-font-size: 18px !default;
+$breath-chat-contact-list-item-nickname-padding-left: 10px !default;
+
+$breath-chat-contact-list-item-number-message-to-read-width: 25px !default;
+$breath-chat-contact-list-item-number-message-to-read-height: 25px !default;
+$breath-chat-contact-list-item-number-message-to-read-line-height: 25px !default; 
+$breath-chat-contact-list-item-number-message-to-read-background-color: #F76055 !default;
+$breath-chat-contact-list-item-numbet-message-to-read-font-color: white !default;
+
+.breath-chat-contact-list
+{
+	width: $breath-chat-contact-list-width;
+	height: $breath-chat-contact-list-height;
+
+	.contact-list-item
+	{
+		@include clear("&");
+
+		cursor: pointer;
+		position: relative;
+		width: $breath-chat-contact-list-item-width;
+		height: $breath-chat-contact-list-item-height;
+		padding-top: $breath-chat-contact-list-item-padding-top;
+		padding-bottom: $breath-chat-contact-list-item-padding-bottom;
+		padding-left: $breath-chat-contact-list-item-padding-left;
+		padding-right: $breath-chat-contact-list-item-padding-right;
+		background-color: $breath-chat-contact-list-item-backgroundColor;
+
+		&.active
+		{
+			background-color: $breath-chat-contact-list-item-backgroundColor-selected;
+		}
+
+		.contact-thumbnail
+		{
+			position: relative;
+			z-index: 2;
+
+			width: $breath-chat-contact-list-item-thumbnail-width;
+			height: $breath-chat-contact-list-item-thumbnail-height;
+			border-radius: $breath-chat-contact-list-item-thumbnail-radius;
+		}
+
+		.contact-nickname
+		{
+			@include text-overflow-ellipsis;
+
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+
+			width: $breath-chat-contact-list-item-nickname-width;
+			height: $breath-chat-contact-list-item-nickname-height;
+			line-height: $breath-chat-contact-list-item-nickname-line-height;
+			padding-left: $breath-chat-contact-list-item-thumbnail-width + $breath-chat-contact-list-item-nickname-padding-left + $breath-chat-contact-list-item-padding-left;
+			padding-right: $breath-chat-contact-list-item-number-message-to-read-width + 10;
+			font-size: $breath-chat-contact-list-item-nickname-font-size;
+		}
+
+		.number-message-to-read
+		{
+			position: absolute;
+			z-index: 3;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			text-align: center;
+			padding: 0 2px;
+
+			margin-right: $breath-chat-contact-list-item-padding-right;
+			width: $breath-chat-contact-list-item-number-message-to-read-width;
+			height: $breath-chat-contact-list-item-number-message-to-read-height;
+			line-height: $breath-chat-contact-list-item-number-message-to-read-line-height;
+			color: $breath-chat-contact-list-item-numbet-message-to-read-font-color;
+			background-color: $breath-chat-contact-list-item-number-message-to-read-background-color;
+		}
+
+	}
+}

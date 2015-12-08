@@ -27,98 +27,118 @@ var EventEmitter = require('events').EventEmitter;
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
 var ActionConstants = _constantsBreathChatConstants2["default"].Action;
+var ContactType = _constantsBreathChatConstants2["default"].Contact.Type;
 
-var Users = {
-	1: {
+var _$$_ = {
+	currentUser: {
 		id: 1,
-		nickname: "wanglei",
-		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png"
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "wanglei"
 	},
 
-	2: {
-		id: 2,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	3: {
-		id: 3,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
-	},
-
-	4: {
-		id: 4,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	5: {
-		id: 5,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
-	}
-};
-
-var _user = {
-	currentUserId: 1,
 	activeContactId: 2,
-	contantIds: [2, 3, 4, 5]
+	activeContactType: ContactType.USER,
+
+	contacts: {
+		users: {
+			2: {
+				id: 2,
+				nickname: "houna",
+				thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
+			},
+
+			3: {
+				id: 3,
+				nickname: "kang",
+				thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
+			},
+
+			4: {
+				id: 4,
+				nickname: "houna",
+				thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
+			},
+
+			5: {
+				id: 5,
+				nickname: "kang",
+				thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
+			}
+		},
+
+		groups: {}
+	}
 };
 
 var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
 	switch (action.type) {
 		case ActionConstants.CHANGE_ACTIVE_CONTACT:
-			_user.activeContactId = action.data.id;
+			_$$_.activeContactId = action.data.id;
+			_$$_.activeContactType = action.type;
 
-			userStore.emit(EventConstants.CHANGE_ACTIVE_CONTACT);
+			contactStore.emit(EventConstants.CHANGE_ACTIVE_CONTACT);
 			break;
 	}
 });
 
-var BreathChatUserStore = (function (_EventEmitter) {
-	_inherits(BreathChatUserStore, _EventEmitter);
+var BreathChatContactStore = (function (_EventEmitter) {
+	_inherits(BreathChatContactStore, _EventEmitter);
 
-	function BreathChatUserStore() {
-		_classCallCheck(this, BreathChatUserStore);
+	function BreathChatContactStore() {
+		_classCallCheck(this, BreathChatContactStore);
 
 		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 			args[_key] = arguments[_key];
 		}
 
-		_get(Object.getPrototypeOf(BreathChatUserStore.prototype), "constructor", this).apply(this, args);
+		_get(Object.getPrototypeOf(BreathChatContactStore.prototype), "constructor", this).apply(this, args);
 
 		this.dispatchToken = _dispatchToken;
 	}
 
-	_createClass(BreathChatUserStore, [{
-		key: "getUserById",
-		value: function getUserById(id) {
-			return Users[id];
+	_createClass(BreathChatContactStore, [{
+		key: "getContactByIdAndType",
+		value: function getContactByIdAndType(id, type) {
+			var contact = null;
+
+			switch (type) {
+				case ContactType.USER:
+					contact = _$$_.contacts.users[id];
+					break;
+
+				case ContactType.GROUP:
+					contact = _$$_.contacts.groups[id];
+					break;
+			}
+
+			return contact;
 		}
 	}, {
 		key: "getCurrentUser",
 		value: function getCurrentUser() {
-			return this.getUserById(_user.currentUserId);
+			return _$$_.currentUser;
 		}
 	}, {
 		key: "getActiveContact",
 		value: function getActiveContact() {
-			return this.getUserById(_user.activeContactId);
+			return this.getContactByIdAndType(_$$_.activeContactId, _$$_.activeContactType) || null;
 		}
 	}, {
-		key: "getCurrentUserContacts",
-		value: function getCurrentUserContacts() {
-			return Underscore.map(_user.contantIds, (function (contantId) {
-				return this.getUserById(contantId);
-			}).bind(this));
+		key: "getActiveContactType",
+		value: function getActiveContactType() {
+			return _$$_.activeContactType;
+		}
+	}, {
+		key: "getContacts",
+		value: function getContacts() {
+			return _$$_.contacts;
 		}
 	}]);
 
-	return BreathChatUserStore;
+	return BreathChatContactStore;
 })(EventEmitter);
 
-var userStore = new BreathChatUserStore();
+var contactStore = new BreathChatContactStore();
 
-exports["default"] = userStore;
+exports["default"] = contactStore;
 module.exports = exports["default"];

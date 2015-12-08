@@ -1,0 +1,16 @@
+.breath-chat-contactPane {
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  width: 200px;
+  height: 100px;
+  background-color: white; }
+  .breath-chat-contactPane .headerBar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: 60px;
+    padding: 15px; }
+  .breath-chat-contactPane .contactArea {
+    width: breath-chat-contactPane-contactListArea-pc-width;
+    padding: 0 0 10px; }
+
+/*# sourceMappingURL=_breath-chat-contactPane.css.map */

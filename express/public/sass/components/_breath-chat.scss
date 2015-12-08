@@ -1,5 +1,7 @@
 $breath-chat-pc-width: auto !default;
 $breath-chat-pc-height: auto !default;
+$breath-chat-pc-min-width: 760px !default;
+$breath-chat-pc-max-wdith: 100% !default;
 
 .breath-chat
 {
@@ -12,8 +14,11 @@ $breath-chat-pc-height: auto !default;
 	width: $breath-chat-pc-width;
 	height: $breath-chat-pc-height;
 
+	min-width : $breath-chat-pc-min-width;
+	max-width: $breath-chat-pc-max-wdith;
+
 	.breath-chat-toolPane,
-	.breath-chat-userListPane,
+	.breath-chat-contactPane,
 	.breath-chat-communicatePane
 	{
 		float: left;
@@ -21,9 +26,7 @@ $breath-chat-pc-height: auto !default;
 		position: relative;
 	}
 
-	
-
-	.breath-chat-userListPane
+	.breath-chat-contactPane
 	{
 		z-index: 2;
 	}
@@ -32,5 +35,4 @@ $breath-chat-pc-height: auto !default;
 	{
 		z-index: 3;
 	}
-
 }

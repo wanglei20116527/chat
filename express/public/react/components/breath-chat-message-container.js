@@ -67,7 +67,7 @@ class BreathChatMessageContainer extends React.Component {
 		// 			 		        </li>;
 		// 			break;
 
-		let messagesWrappers = UnderScore.map(this.props.messages.data, function( message ){
+		let messagesWrappers = UnderScore.map(this.props.messages.datas, function( message ){
 			let currentUser     = this.props.currentUser;
 			let activeContact  = this.props.activeContact;
 

@@ -1,3 +1,4 @@
+// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21,6 +22,10 @@ var _breathChatIcon2 = _interopRequireDefault(_breathChatIcon);
 var _breathChatTextarea = require("./breath-chat-textarea");
 
 var _breathChatTextarea2 = _interopRequireDefault(_breathChatTextarea);
+
+var _actionsBreathChatMessageAction = require("../actions/breath-chat-message-action");
+
+var _actionsBreathChatMessageAction2 = _interopRequireDefault(_actionsBreathChatMessageAction);
 
 var React = require("react");
 
@@ -47,6 +52,20 @@ var InteractivePane = (function (_React$Component) {
 				icon: "icon-file-alt"
 			};
 
+			var textareaProps = {
+				onKeyUpHandler: function onKeyUpHandler(evt) {
+					evt.preventDefault();
+
+					var message = evt.target.value.trim();
+
+					// enter key is pressed
+					if (evt.keyCode == 13 && message) {
+						evt.target.value = "";
+						_actionsBreathChatMessageAction2["default"].createMessage(message);
+					}
+				}
+			};
+
 			return React.createElement(
 				"div",
 				{ className: "breath-chat-interactivePane" },
@@ -71,7 +90,7 @@ var InteractivePane = (function (_React$Component) {
 				React.createElement(
 					"div",
 					{ className: "textareaWrapper" },
-					React.createElement(_breathChatTextarea2["default"], null)
+					React.createElement(_breathChatTextarea2["default"], textareaProps)
 				)
 			);
 		}

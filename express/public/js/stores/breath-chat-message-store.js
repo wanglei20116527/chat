@@ -22,69 +22,197 @@ var _constantsBreathChatConstants = require("../constants/breath-chat-constants"
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
-var _breathChatUserStore = require("./breath-chat-user-store");
+var _breathChatContactStore = require("./breath-chat-contact-store");
 
-var _breathChatUserStore2 = _interopRequireDefault(_breathChatUserStore);
+var _breathChatContactStore2 = _interopRequireDefault(_breathChatContactStore);
 
 var Underscore = require('underscore');
 var EventEmitter = require('events').EventEmitter;
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
 var ActionConstants = _constantsBreathChatConstants2["default"].Action;
+var ContactType = _constantsBreathChatConstants2["default"].Contact.Type;
+var MessageType = _constantsBreathChatConstants2["default"].Message.Type;
 
-var _message = {
-	contact: {
+var _$$_ = {
+	user: {
 		// key user id
-		2: [
-		// messages
-		{
-			id: 1,
-			senderId: 1,
-			recieverId: 2,
-			content: "小伙伴消消气",
-			datetime: 1449306630856
-		}, {
-			id: 2,
-			senderId: 1,
-			recieverId: 2,
-			content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
-			datetime: 1449306630860
-		}, {
-			id: 3,
-			senderId: 2,
-			recieverId: 1,
-			content: "小伙伴消消气",
-			datetime: 1449306630956
-		}, {
-			id: 4,
-			senderId: 1,
-			recieverId: 2,
-			content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
-			datetime: 1449306631056
-		}, {
-			id: 5,
-			senderId: 2,
-			recieverId: 1,
-			content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
-			datetime: 1449306631256
-		}],
+		2: {
+			amount: 100,
+			datas: [{
+				id: 1,
+				senderId: 1,
+				recieverId: 2,
+				recieverType: ContactType.USER,
+				content: "小伙伴消消气",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630856,
+				isRead: true
+			}, {
+				id: 2,
+				senderId: 1,
+				recieverId: 2,
+				recieverType: ContactType.USER,
+				content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630860,
+				isRead: true
+			}, {
+				id: 3,
+				senderId: 2,
+				recieverId: 1,
+				recieverType: ContactType.USER,
+				content: "小伙伴消消气",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630956,
+				isRead: true
+			}, {
+				id: 4,
+				senderId: 1,
+				recieverId: 2,
+				recieverType: ContactType.USER,
+				content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
+				contentType: MessageType.TEXT,
+				datetime: 1449306631056,
+				isRead: true
+			}, {
+				id: 5,
+				senderId: 2,
+				recieverId: 1,
+				recieverType: ContactType.USER,
+				content: "小伙伴消消气，小度做错啥让你不开心啦，要不让我给你讲个笑话抵罪吧!",
+				contentType: MessageType.TEXT,
+				datetime: 1449306631256,
+				isRead: true
+			}]
+		},
 
-		3: [],
+		3: {
+			amount: 11,
+			datas: [{
+				id: 1,
+				senderId: 1,
+				recieverId: 3,
+				recieverType: ContactType.USER,
+				content: "1",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630856,
+				isRead: true
+			}, {
+				id: 2,
+				senderId: 1,
+				recieverId: 3,
+				recieverType: ContactType.USER,
+				content: "1",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630860,
+				isRead: true
+			}, {
+				id: 3,
+				senderId: 3,
+				recieverId: 1,
+				recieverType: ContactType.USER,
+				content: "3",
+				contentType: MessageType.TEXT,
+				datetime: 1449306630956,
+				isRead: true
+			}, {
+				id: 4,
+				senderId: 1,
+				recieverId: 3,
+				recieverType: ContactType.USER,
+				content: "1",
+				contentType: MessageType.TEXT,
+				datetime: 1449306631056,
+				isRead: true
+			}, {
+				id: 5,
+				senderId: 3,
+				recieverId: 1,
+				recieverType: ContactType.USER,
+				content: "3",
+				contentType: MessageType.TEXT,
+				datetime: 1449306631256,
+				isRead: true
+			}]
+		},
 
-		4: [],
+		4: {},
 
-		5: []
+		5: {}
 	},
 
 	group: {}
 };
 
-var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
-	switch (action.type) {
-		case ActionConstants.ACTIVE_CONTACT_CHANGE:
-			_dispatchersBreathChatDispatcher2["default"].waitFor([_breathChatUserStore2["default"].dispatchToken]);
+function makeAllMessagesReaded(contactId, contactType) {
+	switch (contactType) {
+		case ContactType.USER:
+			_$$_.user[contactId].datas = Underscore.map(_$$_.user[contactId].datas, function (data) {
+				data.isRead = true;
+				return data;
+			});
+			break;
 
-			messageStore.emit(EventConstants.ACTIVE_CONTACT_CHANGE);
+		case ContactType.GROUP:
+			console.log("make group %d all message readed", contactId);
+			break;
+	}
+}
+
+function getMessageType(message) {
+	return MessageType.TEXT;
+}
+
+function pushEndMessages(contactId, contactType, messages) {
+	var currentUser = _breathChatContactStore2["default"].getCurrentUser();
+	var activeContact = _breathChatContactStore2["default"].getActiveContact();
+	var activeContactType = _breathChatContactStore2["default"].getActiveContactType();
+
+	switch (contactType) {
+		case ContactType.USER:
+			_$$_.user[contactId].datas || (_$$_.user[contactId].datas = []);
+
+			Underscore.each(messages, function (message) {
+				var newMessage = {
+					senderId: currentUser.id,
+					recieverId: activeContact.id,
+					recieverType: activeContactType,
+					content: message,
+					contentType: getMessageType(message),
+					datetime: Date.now(),
+					isRead: true
+				};
+
+				_$$_.user[contactId].datas.push(newMessage);
+			});
+			break;
+
+		case ContactType.GROUP:
+			break;
+	}
+}
+
+function pushBeginMessages(contactId, contactType, messages) {}
+
+var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
+	var contact = _breathChatContactStore2["default"].getActiveContact();
+	var contactType = _breathChatContactStore2["default"].getActiveContactType();
+
+	switch (action.type) {
+		case ActionConstants.CHANGE_ACTIVE_CONTACT:
+			_dispatchersBreathChatDispatcher2["default"].waitFor([_breathChatContactStore2["default"].dispatchToken]);
+
+			makeAllMessagesReaded(contact.id, contactType);
+
+			messageStore.emit(EventConstants.CHANGE_ACTIVE_CONTACT);
+			break;
+
+		case ActionConstants.CREATE_MESSAGE:
+			var message = action.data.message;
+			pushEndMessages(contact.id, contactType, [message]);
+
+			messageStore.emit(EventConstants.MESSAGE_CAHNGE);
 			break;
 	}
 });
@@ -105,12 +233,48 @@ var BreathChatMessageStore = (function (_EventEmitter) {
 	}
 
 	_createClass(BreathChatMessageStore, [{
-		key: "getMessagesByContactId",
-		value: function getMessagesByContactId(contactId) {
-			return {
-				amount: 100,
-				data: _message.contact[contactId]
+		key: "getActiveContactMessages",
+		value: function getActiveContactMessages() {
+			var contact = _breathChatContactStore2["default"].getActiveContact();
+			if (contact) {
+				var contactType = _breathChatContactStore2["default"].getActiveContactType();
+
+				return this.getMessagesByContactIdAndType(contact.id, contactType);
+			}
+
+			return null;
+		}
+	}, {
+		key: "getMessagesByContactIdAndType",
+		value: function getMessagesByContactIdAndType(contactId, type) {
+			var messages = null;
+
+			switch (type) {
+				case ContactType.USER:
+					messages = {
+						amount: _$$_.user[contactId].amount
+					};
+
+					messages.datas = Underscore.map(_$$_.user[contactId].datas, function (data) {
+						return {
+							id: data.recieverType + " " + data.senderId + " " + data.recieverId + data.datetime,
+							senderId: data.senderId,
+							recieverId: data.recieverId,
+							recieverType: data.recieverType,
+							content: data.content,
+							contentType: data.contentType,
+							datetime: data.datetime,
+							isRead: true
+						};
+					});
+					break;
+
+				case ContactType.GROUP:
+					messages = _$$_.group[contactId];
+					break;
 			};
+
+			return messages;
 		}
 	}]);
 

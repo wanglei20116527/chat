@@ -105,7 +105,7 @@ var BreathChatMessageContainer = (function (_React$Component) {
 			// 			 		        </li>;
 			// 			break;
 
-			var messagesWrappers = UnderScore.map(this.props.messages.data, (function (message) {
+			var messagesWrappers = UnderScore.map(this.props.messages.datas, (function (message) {
 				var currentUser = this.props.currentUser;
 				var activeContact = this.props.activeContact;
 

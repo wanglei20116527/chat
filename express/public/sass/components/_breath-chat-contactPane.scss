@@ -1,0 +1,36 @@
+$breath-chat-contactPane-pc-width: 200px !default;
+$breath-chat-contactPane-pc-height: 100px !default;
+$breath-chat-contactPane-pc-backgroundColor: white !default;
+
+$breath-chat-contactPane-headerBar-pc-width: 100% !default;
+$breath-chat-contactPane-headerBar-pc-height: 60px !default;
+$breath-chat-contactPane-headerBar-pc-padding: 15px !default;
+
+$breath-chat-contactPane-contactListArea-pc-width: 100% !default;
+$breath-chat-contactPane-contactListArea-pc-padding: 0 0 10px !default;
+
+.breath-chat-contactPane
+{
+	overflow: hidden;
+	border-right: 1px solid rgba(0, 0, 0, 0.15);
+
+	width: $breath-chat-contactPane-pc-width;
+	height: $breath-chat-contactPane-pc-height;
+	background-color: $breath-chat-contactPane-pc-backgroundColor;
+
+	.headerBar
+	{
+		
+		border-bottom: 1px solid rgba(0, 0, 0, .15);
+		
+		width: $breath-chat-contactPane-headerBar-pc-width;
+		height: $breath-chat-contactPane-headerBar-pc-height;
+		padding: $breath-chat-contactPane-headerBar-pc-padding;
+	}
+
+	.contactArea
+	{
+		width: breath-chat-contactPane-contactListArea-pc-width;
+		padding: $breath-chat-contactPane-contactListArea-pc-padding;
+	}
+}

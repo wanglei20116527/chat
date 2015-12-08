@@ -8,17 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browser": { 
-    "jquery.scrollbar" : "./public/js/vendors/jquery.scrollbar.min.js" 
-  }, 
-  "browserify-shim": {
-    "jquery.scrollbar" : { "depends": ["jquery:jQuery"] } 
-  },
   "dependencies": {
     "core-decorators": "^0.9.1",
     "express": "^4.13.3",

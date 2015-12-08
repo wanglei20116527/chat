@@ -1,5 +1,10 @@
 const BreathChatConstants = {
 	Message:{
+		Type: {
+			TEXT: 1,
+			IMAGE: 2
+		},
+
 		Align: {
 			LEFT: "BreathChatMessageAlignLeft",
 			RIGHT: "BreathChatMessageAlignRight",
@@ -7,33 +12,22 @@ const BreathChatConstants = {
 		}
 	},
 
+	Contact:{
+		Type: {
+			USER: 1,
+			GROUP: 2
+		}
+	},
+
 	Event:{
-		ACTIVE_CONTACT_CHANGE: 1
+		CHANGE_ACTIVE_CONTACT: 1,
+		MESSAGE_CAHNGE: 2
 	},
 
 	Action: {
-		ACTIVE_CONTACT_CHANGE: 1
+		CHANGE_ACTIVE_CONTACT: 1,
+		CREATE_MESSAGE: 2
 	}
-
-	// UserStore: {
-	// 	Event: {
-	// 		ACTIVE_CONTACT_CHANGE: 1
-	// 	},
-
-	// 	Action:{
-	// 		ACTIVE_CONTACT_CHANGE: 1
-	// 	}
-	// },
-
-	// MessageStore: {
-	// 	Event: {
-	// 		ACTIVE_CONTACT_CHANGE: 1
-	// 	},
-
-	// 	Action: {
-	// 		ACTIVE_CONTACT_CHANGE: 1
-	// 	}	
-	// }
 };
 
 export default BreathChatConstants;

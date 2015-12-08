@@ -52,10 +52,10 @@ let _user = {
 
 let _dispatchToken =  BreathChatDispatcher.register(function( action ){
 	switch(  action.type ){
-		case ActionConstants.ACTIVE_CONTACT_CHANGE :
+		case ActionConstants.CHANGE_ACTIVE_CONTACT :
 			_user.activeContactId = action.data.id;
 
-			userStore.emit(  EventConstants.ACTIVE_CONTACT_CHANGE );
+			userStore.emit(  EventConstants.CHANGE_ACTIVE_CONTACT );
 			break;
 	}
 });
