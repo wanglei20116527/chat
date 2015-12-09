@@ -1,6 +1,10 @@
 let React = require("react");
 
 class BreathChatTextarea extends React.Component{
+	constructor( ...args ){
+		super( ...args );
+	}
+
 	onKeyUpHandler( evt ){
 		this.props.onKeyUpHandler && this.props.onKeyUpHandler( evt );
 	}

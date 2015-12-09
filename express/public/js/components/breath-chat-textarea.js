@@ -20,7 +20,11 @@ var BreathChatTextarea = (function (_React$Component) {
 	function BreathChatTextarea() {
 		_classCallCheck(this, BreathChatTextarea);
 
-		_get(Object.getPrototypeOf(BreathChatTextarea.prototype), "constructor", this).apply(this, arguments);
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		_get(Object.getPrototypeOf(BreathChatTextarea.prototype), "constructor", this).apply(this, args);
 	}
 
 	_createClass(BreathChatTextarea, [{
