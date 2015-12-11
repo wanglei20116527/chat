@@ -1,9 +1,9 @@
-import BreathChat from "./components/breath-chat";
+import React from "react";
+import { render } from "react-dom";
 
-let React = require("react");
-let ReactDOM = require( "react-dom" );
+import Router from "./routers/breath-chat-router";
 
-ReactDOM.render(
-	<BreathChat />,
+render(
+	<Router />,
 	document.getElementById( "breath-chat" )
 );

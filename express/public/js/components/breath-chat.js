@@ -14,9 +14,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _breathChatToolPane = require("./breath-chat-toolPane");
+var _breathChatNavigator = require("./breath-chat-navigator");
 
-var _breathChatToolPane2 = _interopRequireDefault(_breathChatToolPane);
+var _breathChatNavigator2 = _interopRequireDefault(_breathChatNavigator);
 
 var _breathChatContactPane = require("./breath-chat-contact-pane");
 
@@ -41,16 +41,16 @@ var BreathChat = (function (_React$Component) {
 	_createClass(BreathChat, [{
 		key: "componentDidMount",
 		value: function componentDidMount() {
-			var chatNode = ReactDOM.findDOMNode(this.refs.chat);
-			var toolPaneNode = ReactDOM.findDOMNode(this.refs.toolPane);
-			var contactPaneNode = ReactDOM.findDOMNode(this.refs.contactPane);
-			var communicatePaneNode = ReactDOM.findDOMNode(this.refs.communicatePane);
+			// let chatNode =  ReactDOM.findDOMNode( this.refs.chat );
+			// let sideBarNode = ReactDOM.findDOMNode( this.refs.sideBar );
+			// let contactPaneNode = ReactDOM.findDOMNode( this.refs.contactPane );
+			// let communicatePaneNode = ReactDOM.findDOMNode( this.refs.communicatePane );
 
-			var communicatePaneStyle = document.defaultView.getComputedStyle(communicatePaneNode, null);
+			// let communicatePaneStyle = document.defaultView.getComputedStyle( communicatePaneNode, null );
 
-			chatNode.style.height = communicatePaneStyle.height;
-			toolPaneNode.style.height = communicatePaneStyle.height;
-			contactPaneNode.style.height = communicatePaneStyle.height;
+			// chatNode.style.height = communicatePaneStyle.height;
+			// sideBarNode.style.height = communicatePaneStyle.height;
+			// contactPaneNode.style.height = communicatePaneStyle.height;
 		}
 	}, {
 		key: "render",
@@ -58,9 +58,16 @@ var BreathChat = (function (_React$Component) {
 			return React.createElement(
 				"div",
 				{ className: "breath-chat", ref: "chat" },
-				React.createElement(_breathChatToolPane2["default"], { ref: "toolPane" }),
-				React.createElement(_breathChatContactPane2["default"], { ref: "contactPane" }),
-				React.createElement(_breathChatCommunicatePane2["default"], { ref: "communicatePane" })
+				React.createElement(
+					"div",
+					{ className: "side-bar", ref: "sideBar" },
+					React.createElement(_breathChatNavigator2["default"], null)
+				),
+				React.createElement(
+					"div",
+					{ className: "content-area" },
+					this.props.children
+				)
 			);
 		}
 	}]);

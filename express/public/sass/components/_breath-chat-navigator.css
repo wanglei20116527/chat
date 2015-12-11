@@ -1,0 +1,33 @@
+.breath-chat-navigator {
+  width: 100%;
+  height: auto;
+  padding: 10px 10px; }
+  .breath-chat-navigator .user-link,
+  .breath-chat-navigator .communicate-link,
+  .breath-chat-navigator .contact-link,
+  .breath-chat-navigator .group-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; }
+  .breath-chat-navigator .communicate-link,
+  .breath-chat-navigator .contact-link,
+  .breath-chat-navigator .group-link {
+    font-size: 28px;
+    color: white;
+    text-align: center; }
+    .breath-chat-navigator .communicate-link:before,
+    .breath-chat-navigator .contact-link:before,
+    .breath-chat-navigator .group-link:before {
+      display: block;
+      margin: 0 auto; }
+  .breath-chat-navigator .user-link {
+    padding-bottom: 30px; }
+  .breath-chat-navigator .communicate-link {
+    padding-bottom: 15px; }
+  .breath-chat-navigator .contact-link {
+    padding-bottom: 18px; }
+  .breath-chat-navigator .group-link {
+    padding-bottom: 0; }
+
+/*# sourceMappingURL=_breath-chat-navigator.css.map */

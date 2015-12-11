@@ -1,0 +1,64 @@
+$breath-chat-navigator-width: 100% !default;
+$breath-chat-navigator-height: auto !default;
+$breath-chat-navigator-padding: 10px 10px !default;
+
+$breath-chat-user-link-padding-bottom: 30px !default;
+$breath-chat-communicate-link-padding-bottom: 15px !default;
+$breath-chat-contact-link-padding-bottom: 18px !default;
+$breath-chat-group-link-padding-bottom: 0 !default;
+
+$breath-chat-font-size: 28px !default;
+$breath-chat-font-color: white !default;
+
+.breath-chat-navigator
+{
+	width: $breath-chat-navigator-width;
+	height: $breath-chat-navigator-height;
+	padding: $breath-chat-navigator-padding;
+
+	.user-link,
+	.communicate-link,
+	.contact-link,
+	.group-link
+	{
+		display: block;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	.communicate-link,
+	.contact-link,
+	.group-link
+	{
+		font-size: $breath-chat-font-size;
+		color: $breath-chat-font-color;
+		text-align: center;
+
+		&:before
+		{
+			display: block;
+			margin: 0 auto;
+		}
+	}
+
+	.user-link
+	{
+		padding-bottom: $breath-chat-user-link-padding-bottom;
+	}
+
+	.communicate-link
+	{
+		padding-bottom: $breath-chat-communicate-link-padding-bottom;
+	}
+
+	.contact-link
+	{
+		padding-bottom: $breath-chat-contact-link-padding-bottom;
+	}
+
+	.group-link
+	{
+		padding-bottom: $breath-chat-group-link-padding-bottom;
+	}
+}

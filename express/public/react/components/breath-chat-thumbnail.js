@@ -1,5 +1,5 @@
-let React = require("react");
-let Underscore = require( "underscore" );
+import React from "react";
+import Underscore from "underscore";
 
 class BreathChatThumbnail extends React.Component{
 	onClickHandler( evt ){

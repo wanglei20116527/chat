@@ -1,23 +1,20 @@
 .breath-chat-communicatePane {
-  width: 500px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   position: relative;
   display: block;
   overflow: hidden; }
-  .breath-chat-communicatePane .headerBar {
+  .breath-chat-communicatePane .breath-chat-contactPane,
+  .breath-chat-communicatePane .message-pane-wrapper {
+    display: block; }
+  .breath-chat-communicatePane .breath-chat-contactPane {
+    width: 200px; }
+  .breath-chat-communicatePane .message-pane-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
-  .breath-chat-communicatePane .messageArea {
-    width: 100%;
-    height: 350px;
-    overflow-y: auto;
-    overflow-x: hidden; }
-  .breath-chat-communicatePane .interactiveArea {
-    width: 100%;
-    height: 120px;
-    max-height: 150px;
-    border-top: 1px solid rgba(0, 0, 0, 0.15); }
+    height: 100%;
+    padding-left: 200px; }
 
 /*# sourceMappingURL=_breath-chat-communicatePane.css.map */

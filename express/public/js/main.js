@@ -2,11 +2,14 @@
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _componentsBreathChat = require("./components/breath-chat");
+var _react = require("react");
 
-var _componentsBreathChat2 = _interopRequireDefault(_componentsBreathChat);
+var _react2 = _interopRequireDefault(_react);
 
-var React = require("react");
-var ReactDOM = require("react-dom");
+var _reactDom = require("react-dom");
 
-ReactDOM.render(React.createElement(_componentsBreathChat2["default"], null), document.getElementById("breath-chat"));
+var _routersBreathChatRouter = require("./routers/breath-chat-router");
+
+var _routersBreathChatRouter2 = _interopRequireDefault(_routersBreathChatRouter);
+
+(0, _reactDom.render)(_react2["default"].createElement(_routersBreathChatRouter2["default"], null), document.getElementById("breath-chat"));

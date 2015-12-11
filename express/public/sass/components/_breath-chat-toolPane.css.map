@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAIA,qBACA;EACC,KAAK,EANuB,IAAI;EAOhC,MAAM,EANuB,IAAI;EAOjC,gBAAgB,EANsB,OAAO",
-"sources": ["_breath-chat-toolPane.scss"],
-"names": [],
-"file": "_breath-chat-toolPane.css"
-}

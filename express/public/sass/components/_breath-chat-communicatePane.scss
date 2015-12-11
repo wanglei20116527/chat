@@ -1,16 +1,7 @@
-$breath-chat-communicatePane-pc-width: 500px !default;
-$breath-chat-communicatePane-pc-height: auto !default;
+$breath-chat-communicatePane-pc-width: 100% !default;
+$breath-chat-communicatePane-pc-height: 100% !default;
 
-$breath-chat-interactivePane-headerBar-pc-width: 100% !default;
-$breath-chat-interactivePane-headerBar-pc-height: 60px !default;
-$breath-chat-interactivePane-headerBar-pc-padding: 15px !default;
-
-$breath-chat-communicatePane-messageArea-pc-width: 100% !default;
-$breath-chat-communicatePane-messageArea-pc-height: 350px !default;
-
-$breath-chat-communicatePane-interactiveArea-pc-width: 100% !default;
-$breath-chat-communicatePane-interactiveArea-pc-height: 120px !default;
-$breath-chat-communicatePane-interactiveArea-pc-max-height: 150px !default;
+$breath-chat-communicatePane-contactPane-width: 200px !default;
 
 .breath-chat-communicatePane
 {
@@ -20,27 +11,24 @@ $breath-chat-communicatePane-interactiveArea-pc-max-height: 150px !default;
 	display: block;
 	overflow: hidden;
 
-	.headerBar
+	.breath-chat-contactPane,
+	.message-pane-wrapper
 	{
-		width: $breath-chat-interactivePane-headerBar-pc-width;
-		height: $breath-chat-interactivePane-headerBar-pc-height;
-		padding: $breath-chat-interactivePane-headerBar-pc-padding;
-		border-bottom: 1px solid rgba(0, 0, 0, .15);
+		display: block;
 	}
 
-	.messageArea
+	.breath-chat-contactPane
 	{
-		width: $breath-chat-communicatePane-messageArea-pc-width;
-		height: $breath-chat-communicatePane-messageArea-pc-height;
-		overflow-y: auto;
-		overflow-x: hidden;
+		width: $breath-chat-communicatePane-contactPane-width;
 	}
 
-	.interactiveArea
+	.message-pane-wrapper
 	{
-		width: $breath-chat-communicatePane-interactiveArea-pc-width;
-		height: $breath-chat-communicatePane-interactiveArea-pc-height;
-		max-height: $breath-chat-communicatePane-interactiveArea-pc-max-height;
-		border-top: 1px solid rgba(0, 0, 0, .15);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding-left: $breath-chat-communicatePane-contactPane-width;
 	}
 }

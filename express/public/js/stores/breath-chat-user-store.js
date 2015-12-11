@@ -14,67 +14,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _events = require("events");
+
 var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
 
 var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
 
-var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
+var _$$_ = {
+	isLogin: true,
 
-var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
-
-var Underscore = require('underscore');
-var EventEmitter = require('events').EventEmitter;
-
-var EventConstants = _constantsBreathChatConstants2["default"].Event;
-var ActionConstants = _constantsBreathChatConstants2["default"].Action;
-
-var Users = {
-	1: {
+	infor: {
 		id: 1,
-		nickname: "wanglei",
-		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png"
-	},
-
-	2: {
-		id: 2,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	3: {
-		id: 3,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
-	},
-
-	4: {
-		id: 4,
-		nickname: "houna",
-		thumbnail: "images/b13b56fb52e7042cfc41c22c1feef3a5.png"
-	},
-
-	5: {
-		id: 5,
-		nickname: "kang",
-		thumbnail: "images/dba53bd217e5eb33d4334a56c4b790d9.jpg"
+		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
+		nickname: "wanglei"
 	}
 };
-
-var _user = {
-	currentUserId: 1,
-	activeContactId: 2,
-	contantIds: [2, 3, 4, 5]
-};
-
-var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
-	switch (action.type) {
-		case ActionConstants.CHANGE_ACTIVE_CONTACT:
-			_user.activeContactId = action.data.id;
-
-			userStore.emit(EventConstants.CHANGE_ACTIVE_CONTACT);
-			break;
-	}
-});
 
 var BreathChatUserStore = (function (_EventEmitter) {
 	_inherits(BreathChatUserStore, _EventEmitter);
@@ -87,38 +41,19 @@ var BreathChatUserStore = (function (_EventEmitter) {
 		}
 
 		_get(Object.getPrototypeOf(BreathChatUserStore.prototype), "constructor", this).apply(this, args);
-
-		this.dispatchToken = _dispatchToken;
 	}
 
 	_createClass(BreathChatUserStore, [{
-		key: "getUserById",
-		value: function getUserById(id) {
-			return Users[id];
-		}
-	}, {
 		key: "getCurrentUser",
 		value: function getCurrentUser() {
-			return this.getUserById(_user.currentUserId);
-		}
-	}, {
-		key: "getActiveContact",
-		value: function getActiveContact() {
-			return this.getUserById(_user.activeContactId);
-		}
-	}, {
-		key: "getCurrentUserContacts",
-		value: function getCurrentUserContacts() {
-			return Underscore.map(_user.contantIds, (function (contantId) {
-				return this.getUserById(contantId);
-			}).bind(this));
+			return _$$_.infor;
 		}
 	}]);
 
 	return BreathChatUserStore;
-})(EventEmitter);
+})(_events.EventEmitter);
 
-var userStore = new BreathChatUserStore();
+;
 
-exports["default"] = userStore;
+exports["default"] = new BreathChatUserStore();
 module.exports = exports["default"];
