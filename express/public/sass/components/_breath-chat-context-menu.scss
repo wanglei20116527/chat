@@ -1,0 +1,73 @@
+$breath-chat-context-menu-width: 150px !default;
+$breath-chat-context-menu-height: auto !default;	
+
+$breath-chat-context-menu-item-width: 100% !default;
+$breath-chat-context-menu-item-height: 40px !default;
+$breath-chat-context-menu-item-padding: 0 10px !default;
+$breath-chat-context-menu-item-backgroundColor-normal: white !default;
+$breath-chat-context-menu-item-backgroundColor-active:  #E8E7E7 !default;
+$breath-chat-context-menu-item-backgroundColor-hover:  #E8E7E7 !default;
+
+$breath-chat-context-menu-item-icon-width: 22px !default;
+$breath-chat-context-menu-item-icon-height: auto !default;
+ $breath-chat-context-menu-item-icon-padding-left: 4px;
+
+.breath-chat-context-menu
+{
+	@include inline-block;
+
+	position: absolute;
+	background-color: white;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, .35);
+
+	width: $breath-chat-context-menu-width;
+	height: $breath-chat-context-menu-height;
+
+	.breath-chat-context-menu-item
+	{
+		position: relative;
+		display: block;
+		cursor: pointer;
+
+		width: $breath-chat-context-menu-item-width;
+		height: auto;
+
+		.innerWrapper
+		{
+			position: relative;
+			display: block;
+			width: 100%;
+
+			height: $breath-chat-context-menu-item-height;
+			line-height: $breath-chat-context-menu-item-height;
+			padding: $breath-chat-context-menu-item-padding;
+			background-color: $breath-chat-context-menu-item-backgroundColor-normal;
+
+			&:active
+			{
+				background-color: $breath-chat-context-menu-item-backgroundColor-active;
+			}
+
+			&:hover
+			{
+				background-color: $breath-chat-context-menu-item-backgroundColor-hover;
+			}
+
+			.icon
+			{
+				position: relative;
+				z-index: 1;
+			}
+
+			.text
+			{
+				position: absolute;
+				display: block;
+				top: 0;
+				height: 100%;
+				z-index: 2;
+				padding-left: $breath-chat-context-menu-item-icon-width + $breath-chat-context-menu-item-icon-padding-left;
+			}
+		}
+	}
+}

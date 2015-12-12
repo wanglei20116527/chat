@@ -1,12 +1,11 @@
+import React from "react";
+import UnderScore from "underscore";
+
 // import components
 import Label from "./breath-chat-label";
 import Thumbnail from "./breath-chat-thumbnail";
 import LeftMessage from "./breath-chat-message-left";
 import RightMessage from "./breath-chat-message-right";
-
-let React = require( "react" );
-let ReactDOM = require( "react-dom" );
-let UnderScore = require( "underscore" );
 
 function createMessageItem( currentUser, activeContact, message ){
 	let thumbnailItem = null;

@@ -18,69 +18,77 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-// import components
+var _underscore = require("underscore");
 
-var _breathChatNavigator = require("./breath-chat-navigator");
+var _underscore2 = _interopRequireDefault(_underscore);
 
-var _breathChatNavigator2 = _interopRequireDefault(_breathChatNavigator);
+var _breathChatIcon = require("./breath-chat-icon");
 
-var _breathChatToolPane = require("./breath-chat-toolPane");
+var _breathChatIcon2 = _interopRequireDefault(_breathChatIcon);
 
-var _breathChatToolPane2 = _interopRequireDefault(_breathChatToolPane);
+var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
-var _breathChatContactPane = require("./breath-chat-contact-pane");
+var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
-var _breathChatContactPane2 = _interopRequireDefault(_breathChatContactPane);
+var _actionsBreathChatContextMenuAction = require("../actions/breath-chat-contextMenuAction");
 
-var _breathChatCommunicatePane = require("./breath-chat-communicatePane");
+var _actionsBreathChatContextMenuAction2 = _interopRequireDefault(_actionsBreathChatContextMenuAction);
 
-var _breathChatCommunicatePane2 = _interopRequireDefault(_breathChatCommunicatePane);
+var ContextMenuType = _constantsBreathChatConstants2["default"].ContextMenu;
 
-// import  layers
+var BreathChatToolPane = (function (_React$Component) {
+	_inherits(BreathChatToolPane, _React$Component);
 
-var _layersBreathChatContextMenuLayer = require("../layers/breath-chat-contextMenuLayer");
+	function BreathChatToolPane() {
+		_classCallCheck(this, BreathChatToolPane);
 
-var _layersBreathChatContextMenuLayer2 = _interopRequireDefault(_layersBreathChatContextMenuLayer);
-
-var BreathChat = (function (_React$Component) {
-	_inherits(BreathChat, _React$Component);
-
-	function BreathChat() {
-		_classCallCheck(this, BreathChat);
-
-		_get(Object.getPrototypeOf(BreathChat.prototype), "constructor", this).apply(this, arguments);
+		_get(Object.getPrototypeOf(BreathChatToolPane.prototype), "constructor", this).apply(this, arguments);
 	}
 
-	_createClass(BreathChat, [{
+	_createClass(BreathChatToolPane, [{
 		key: "render",
 		value: function render() {
+			var buttonsProps = [{
+				className: "button add-button",
+				icon: {
+					icon: "icon-plus",
+					fontSize: 18
+				},
+				onClickHandler: function onClickHandler(evt) {
+					var type = ContextMenuType.ADD_CONTACT;
+					var position = {
+						x: evt.pageX,
+						y: evt.pageY
+					};
+
+					_actionsBreathChatContextMenuAction2["default"].showContextMenu(type, position);
+				}
+			}];
+
+			var buttons = _underscore2["default"].map(buttonsProps, function (prop, index) {
+				var tmpProp = {
+					key: index,
+					className: prop.className,
+					onClick: prop.onClickHandler
+				};
+
+				return _react2["default"].createElement(
+					"button",
+					tmpProp,
+					_react2["default"].createElement(_breathChatIcon2["default"], prop.icon)
+				);
+			});
+
 			return _react2["default"].createElement(
 				"div",
-				{ className: "breath-chat" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "main-layer breath-chat-layer" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "side-bar" },
-						_react2["default"].createElement(_breathChatNavigator2["default"], null),
-						_react2["default"].createElement(_breathChatToolPane2["default"], null)
-					),
-					_react2["default"].createElement(
-						"div",
-						{ className: "content-area" },
-						this.props.children
-					)
-				),
-				_react2["default"].createElement(_layersBreathChatContextMenuLayer2["default"], null)
+				{ className: "breath-chat-toolPane" },
+				buttons
 			);
 		}
 	}]);
 
-	return BreathChat;
+	return BreathChatToolPane;
 })(_react2["default"].Component);
 
-;
-
-exports["default"] = BreathChat;
+exports["default"] = BreathChatToolPane;
 module.exports = exports["default"];

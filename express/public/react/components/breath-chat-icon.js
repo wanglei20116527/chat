@@ -1,5 +1,5 @@
-let React = require("react");
-let Underscore = require("underscore");
+import React from "react";
+import Underscore from "underscore";
 
 class BreathChatIcon extends React.Component{
 	onClickHandler( evt ){
@@ -7,9 +7,6 @@ class BreathChatIcon extends React.Component{
 	}
 
 	render(){
-		let width  = Underscore.isNumber( this.props.width ) ? this.props.width + "px" : this.props.width;
-		let height = Underscore.isNumber( this.props.height ) ? this.props.height + "px" : this.props.height;
-
 		let style = {
 			fontSize: this.props.fontSize + "px"
 		};

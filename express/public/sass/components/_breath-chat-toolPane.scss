@@ -1,10 +1,26 @@
-$breath-chat-toolPane-width: 60px !default;
-$breath-chat-toolPane-height: auto !default;
-$breath-chat-toolPane-backgroundColor: #66CEFF !default;
+$breath-chat-toolPane-width: 100%;
+$breath-chat-toolPane-height: auto;
 
 .breath-chat-toolPane
 {
+	@include inline-block;
+
 	width: $breath-chat-toolPane-width;
 	height: $breath-chat-toolPane-height;
-	background-color: $breath-chat-toolPane-backgroundColor;
+	text-align: center;
+
+	.button
+	{
+		outline: none;
+		border: none;
+		background-color: transparent;
+	}
+
+	.add-button
+	{
+		.breath-chat-icon
+		{
+			color: white;
+		}
+	}
 }

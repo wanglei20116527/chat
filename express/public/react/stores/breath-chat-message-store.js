@@ -1,10 +1,13 @@
-import Dispatcher from "../dispatchers/breath-chat-dispatcher";
-import Constants from "../constants/breath-chat-constants";
+import Events from "events";
+import Underscore from "underscore";
 
+import Constants from "../constants/breath-chat-constants";
+import Dispatcher from "../dispatchers/breath-chat-dispatcher";
+
+import UserStore from "./breath-chat-user-store";
 import ContactStore from "./breath-chat-contact-store";
 
-let Underscore = require( 'underscore' );
-let EventEmitter = require('events').EventEmitter;
+const EventEmitter = Events.EventEmitter;
 
 const EventConstants   = Constants.Event;
 const ActionConstants = Constants.Action;
@@ -147,61 +150,9 @@ let _$$_ = {
 	}
 };
 
-function makeAllMessagesReaded( contactId, contactType ){
-	switch( contactType ){
-		case ContactType.USER:
-			_$$_.user[ contactId ].datas = Underscore.map(  _$$_.user[ contactId ].datas , function( data ){
-				data.isRead = true;
-				return data;
-			});
-			break;
-
-		case ContactType.GROUP:
-			console.log( "make group %d all message readed", contactId );
-			break;
-	}
-}
-
-function getMessageType( message ){
-	return MessageType.TEXT;
-}
-
-function pushEndMessages( contactId, contactType, messages ){
-	let currentUser = ContactStore.getCurrentUser();
-	let activeContact = ContactStore.getActiveContact();
-	let activeContactType = ContactStore.getActiveContactType();
-
-	switch( contactType ){
-		case ContactType.USER:
-			_$$_.user[ contactId ].datas || ( _$$_.user[ contactId ].datas = [] );
-
-			Underscore.each( messages, function( message ){
-				let newMessage =  {
-					senderId: currentUser.id,
-					recieverId: activeContact.id,
-					recieverType: activeContactType,
-					content: message,
-					contentType: getMessageType( message ),
-					datetime: Date.now(),
-					isRead: true
-				};
-
-				_$$_.user[ contactId ].datas.push( newMessage );
-			});
-			break;
-
-		case ContactType.GROUP:
-			break;
-	}
-}
-
-function pushBeginMessages( contactId, contactType, messages ){
-
-}
-
 let _dispatchToken = Dispatcher.register(function( action ){
-	let contact = ContactStore.getActiveContact();
-	let contactType = ContactStore.getActiveContactType();
+	let contact = null;
+	let contactType = null;
 	
 	switch( action.type ){
 		case ActionConstants.CHANGE_ACTIVE_CONTACT:
@@ -209,12 +160,18 @@ let _dispatchToken = Dispatcher.register(function( action ){
 				ContactStore.dispatchToken
 			]);
 
+			contact = ContactStore.getActiveContact();
+			contactType = ContactStore.getActiveContactType();
+
 			makeAllMessagesReaded( contact.id, contactType );
 
 			messageStore.emit( EventConstants.CHANGE_ACTIVE_CONTACT );
 			break;
 
 		case ActionConstants.CREATE_MESSAGE:
+			contact = ContactStore.getActiveContact();
+			contactType = ContactStore.getActiveContactType();
+			
 			let message  = action.data.message;
 			pushEndMessages( contact.id, contactType, [message] );
 
@@ -276,3 +233,55 @@ class BreathChatMessageStore extends EventEmitter{
 let messageStore = new BreathChatMessageStore();
 
 export default messageStore;
+
+
+function makeAllMessagesReaded( contactId, contactType ){
+	switch( contactType ){
+		case ContactType.USER:
+			_$$_.user[ contactId ].datas = Underscore.map(  _$$_.user[ contactId ].datas , function( data ){
+				data.isRead = true;
+				return data;
+			});
+			break;
+
+		case ContactType.GROUP:
+			console.log( "make group %d all message readed", contactId );
+			break;
+	}
+}
+
+function getMessageType( message ){
+	return MessageType.TEXT;
+}
+
+function pushEndMessages( contactId, contactType, messages ){
+	let currentUser = UserStore.getCurrentUser();
+	let activeContact = ContactStore.getActiveContact();
+	let activeContactType = ContactStore.getActiveContactType();
+
+	switch( contactType ){
+		case ContactType.USER:
+			_$$_.user[ contactId ].datas || ( _$$_.user[ contactId ].datas = [] );
+
+			Underscore.each( messages, function( message ){
+				let newMessage =  {
+					senderId: currentUser.id,
+					recieverId: activeContact.id,
+					recieverType: activeContactType,
+					content: message,
+					contentType: getMessageType( message ),
+					datetime: Date.now(),
+					isRead: true
+				};
+
+				_$$_.user[ contactId ].datas.push( newMessage );
+			});
+			break;
+
+		case ContactType.GROUP:
+			break;
+	}
+}
+
+function pushBeginMessages( contactId, contactType, messages ){
+}

@@ -4,6 +4,8 @@ import React from "react";
 import ContactPane from "./breath-chat-contact-pane";
 import MessagePane from "./breath-chat-messagePane";
 
+import UserStore from "../stores/breath-chat-user-store";
+
 class BreathChatCommunicatePane extends React.Component{
 	render(){
 		return (

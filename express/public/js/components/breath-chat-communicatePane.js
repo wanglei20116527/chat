@@ -28,6 +28,10 @@ var _breathChatMessagePane = require("./breath-chat-messagePane");
 
 var _breathChatMessagePane2 = _interopRequireDefault(_breathChatMessagePane);
 
+var _storesBreathChatUserStore = require("../stores/breath-chat-user-store");
+
+var _storesBreathChatUserStore2 = _interopRequireDefault(_storesBreathChatUserStore);
+
 var BreathChatCommunicatePane = (function (_React$Component) {
 	_inherits(BreathChatCommunicatePane, _React$Component);
 

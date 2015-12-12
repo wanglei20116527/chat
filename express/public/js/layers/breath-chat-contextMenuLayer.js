@@ -1,4 +1,3 @@
-// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15,104 +14,106 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _breathChatContactList = require("./breath-chat-contact-list");
+var _react = require("react");
 
-var _breathChatContactList2 = _interopRequireDefault(_breathChatContactList);
+var _react2 = _interopRequireDefault(_react);
 
-// import constants
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
-// import stores
+var _storesBreathChatContextMenuStore = require("../stores/breath-chat-contextMenu-store");
 
-var _storesBreathChatUserStore = require("../stores/breath-chat-user-store");
+var _storesBreathChatContextMenuStore2 = _interopRequireDefault(_storesBreathChatContextMenuStore);
 
-var _storesBreathChatUserStore2 = _interopRequireDefault(_storesBreathChatUserStore);
+var _componentsBreathChatAddContactContextMenu = require("../components/breath-chat-addContact-contextMenu");
 
-var _storesBreathChatContactStore = require("../stores/breath-chat-contact-store");
+var _componentsBreathChatAddContactContextMenu2 = _interopRequireDefault(_componentsBreathChatAddContactContextMenu);
 
-var _storesBreathChatContactStore2 = _interopRequireDefault(_storesBreathChatContactStore);
+var Actions = _constantsBreathChatConstants2["default"].Action;
+var Events = _constantsBreathChatConstants2["default"].Event;
+var ContextMenuType = _constantsBreathChatConstants2["default"].ContextMenu;
 
-var React = require("react");
-var UnderScore = require('underscore');
+var BreathChatContextMenuLayer = (function (_React$Component) {
+	_inherits(BreathChatContextMenuLayer, _React$Component);
 
-var EventConstants = _constantsBreathChatConstants2["default"].Event;
-
-var BreathChatContactPane = (function (_React$Component) {
-	_inherits(BreathChatContactPane, _React$Component);
-
-	function BreathChatContactPane() {
-		_classCallCheck(this, BreathChatContactPane);
+	function BreathChatContextMenuLayer() {
+		_classCallCheck(this, BreathChatContextMenuLayer);
 
 		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 			args[_key] = arguments[_key];
 		}
 
-		_get(Object.getPrototypeOf(BreathChatContactPane.prototype), "constructor", this).apply(this, args);
+		_get(Object.getPrototypeOf(BreathChatContextMenuLayer.prototype), "constructor", this).apply(this, args);
 
 		this.state = {
-			activeContact: _storesBreathChatContactStore2["default"].getActiveContact(),
-			contacts: _storesBreathChatContactStore2["default"].getContacts()
+			type: _storesBreathChatContextMenuStore2["default"].getContextMenuType(),
+			position: _storesBreathChatContextMenuStore2["default"].getPosition()
 		};
 	}
 
-	_createClass(BreathChatContactPane, [{
+	_createClass(BreathChatContextMenuLayer, [{
 		key: "componentDidMount",
 		value: function componentDidMount() {
 			var events = [{
-				name: EventConstants.CHANGE_ACTIVE_CONTACT,
-				callback: this.updateActiveContact.bind(this)
+				store: _storesBreathChatContextMenuStore2["default"],
+				name: Events.SHOW_CONTEXT_MENU,
+				callback: this.updateContextMenu.bind(this)
 			}];
 
-			UnderScore.map(events, function (evt) {
-				_storesBreathChatContactStore2["default"].on(evt.name, evt.callback);
+			_underscore2["default"].each(events, function (evt) {
+				evt.store.on(evt.name, evt.callback);
 			});
 		}
 	}, {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
-			var events = [EventConstants.CHANGE_ACTIVE_CONTACT];
+			var events = [{
+				store: _storesBreathChatContextMenuStore2["default"],
+				name: Events.SHOW_CONTEXT_MENU
+			}];
 
-			UnderScore.map(events, function (evt) {
-				_storesBreathChatContactStore2["default"].removeListener(evt);
+			_underscore2["default"].each(events, function (evt) {
+				evt.store.removeListener(evt.name);
 			});
 		}
-
-		// @autobind
 	}, {
-		key: "updateActiveContact",
-		value: function updateActiveContact() {
+		key: "updateContextMenu",
+		value: function updateContextMenu() {
 			this.setState({
-				activeContact: _storesBreathChatContactStore2["default"].getActiveContact()
+				type: _storesBreathChatContextMenuStore2["default"].getContextMenuType(),
+				position: _storesBreathChatContextMenuStore2["default"].getPosition()
 			});
 		}
 	}, {
 		key: "render",
 		value: function render() {
-			var className = "breath-chat-contactPane";
-
-			var contactListProps = {
-				activeContact: this.state.activeContact,
-				contacts: this.state.contacts
+			var contextMenu = null;
+			var contextMenuPosition = {
+				x: 0,
+				y: 0
 			};
 
-			return React.createElement(
+			switch (this.state.type) {
+				case ContextMenuType.ADD_CONTACT:
+					contextMenu = _react2["default"].createElement(_componentsBreathChatAddContactContextMenu2["default"], contextMenuPosition);
+					break;
+			}
+
+			return _react2["default"].createElement(
 				"div",
-				{ className: className },
-				React.createElement("div", { className: "headerBar" }),
-				React.createElement(
-					"div",
-					{ className: "contactListArea" },
-					React.createElement(_breathChatContactList2["default"], contactListProps)
-				)
+				{ className: "breath-chat-layer context-menu-layer", ref: "menuLayer" },
+				contextMenu || ""
 			);
 		}
 	}]);
 
-	return BreathChatContactPane;
-})(React.Component);
+	return BreathChatContextMenuLayer;
+})(_react2["default"].Component);
 
-exports["default"] = BreathChatContactPane;
+exports["default"] = BreathChatContextMenuLayer;
 module.exports = exports["default"];

@@ -5,6 +5,7 @@ import ContactList from "./breath-chat-contact-list";
 import Constants from "../constants/breath-chat-constants";
 
 // import stores
+import UserStore from "../stores/breath-chat-user-store";
 import ContactStore from "../stores/breath-chat-contact-store";
 
 let React = require( "react" );

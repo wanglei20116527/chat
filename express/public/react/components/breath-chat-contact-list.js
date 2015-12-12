@@ -1,15 +1,14 @@
+import React from "react";
+import UnderScore from "underscore";
+
 // import components
 import Thumbnail from "./breath-chat-thumbnail";
 import List from "./breath-chat-list";
 import ListItem from "./breath-chat-list-item";
 import Label from "./breath-chat-label";
 
-// import UserAction from "../actions/breath-chat-user-action";
 import Constants from "../constants/breath-chat-constants";
 import ContactAction from "../actions/breath-chat-contact-action";
-
-const React = require( 'react' );
-const UnderScore = require( 'underscore' );
 
 const ActionConstants =Constants.Action;
 const ContactType = Constants.Contact.Type;

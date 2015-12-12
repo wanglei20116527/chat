@@ -1,4 +1,3 @@
-// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19,6 +18,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+// import components
+
 var _breathChatThumbnail = require("./breath-chat-thumbnail");
 
 var _breathChatThumbnail2 = _interopRequireDefault(_breathChatThumbnail);
@@ -35,8 +44,6 @@ var _breathChatLabel = require("./breath-chat-label");
 
 var _breathChatLabel2 = _interopRequireDefault(_breathChatLabel);
 
-// import UserAction from "../actions/breath-chat-user-action";
-
 var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
@@ -44,9 +51,6 @@ var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChat
 var _actionsBreathChatContactAction = require("../actions/breath-chat-contact-action");
 
 var _actionsBreathChatContactAction2 = _interopRequireDefault(_actionsBreathChatContactAction);
-
-var React = require('react');
-var UnderScore = require('underscore');
 
 var ActionConstants = _constantsBreathChatConstants2["default"].Action;
 var ContactType = _constantsBreathChatConstants2["default"].Contact.Type;
@@ -63,7 +67,7 @@ var BreathChatContactList = (function (_React$Component) {
 	_createClass(BreathChatContactList, [{
 		key: "render",
 		value: function render() {
-			var userListItems = UnderScore.map(this.props.contacts.users, (function (contact) {
+			var userListItems = _underscore2["default"].map(this.props.contacts.users, (function (contact) {
 				var listItemProps = {
 					className: "contact-list-item",
 					onClickHandler: function onClickHandler() {
@@ -90,17 +94,17 @@ var BreathChatContactList = (function (_React$Component) {
 				// 	content: user.numberOfMessageUnread
 				// };
 
-				return React.createElement(
+				return _react2["default"].createElement(
 					_breathChatListItem2["default"],
 					_extends({ key: contact.id }, listItemProps),
-					React.createElement(_breathChatThumbnail2["default"], thumbnailProps),
-					React.createElement(_breathChatLabel2["default"], nicknameLabelProps)
+					_react2["default"].createElement(_breathChatThumbnail2["default"], thumbnailProps),
+					_react2["default"].createElement(_breathChatLabel2["default"], nicknameLabelProps)
 				);
 			}).bind(this));
 
 			var contactListItems = [].concat(_toConsumableArray(userListItems));
 
-			return React.createElement(
+			return _react2["default"].createElement(
 				_breathChatList2["default"],
 				{ className: "breath-chat-contact-list" },
 				contactListItems
@@ -109,7 +113,7 @@ var BreathChatContactList = (function (_React$Component) {
 	}]);
 
 	return BreathChatContactList;
-})(React.Component);
+})(_react2["default"].Component);
 
 BreathChatContactList.defaultProps = {};
 

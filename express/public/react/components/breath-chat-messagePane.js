@@ -1,3 +1,7 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import Underscore from "underscore";
+
 // import components
 import InteractivePane from "./breath-chat-interactivePane";
 import MessageContainer from "./breath-chat-message-container";
@@ -6,20 +10,17 @@ import MessageContainer from "./breath-chat-message-container";
 import Constants from "../constants/breath-chat-constants";
 
 // import stores
+import UserStore from "../stores/breath-chat-user-store";
 import ContactStore from "../stores/breath-chat-contact-store";
 import MessageStore from "../stores/breath-chat-message-store";
 
-let React = require("react");
-let ReactDOM = require( "react-dom" );
-let Underscore = require( "underscore" );
-
-let EventConstants = Constants.Event;
+const EventConstants = Constants.Event;
 
 class BreathChatMessagePane extends React.Component{
 	constructor( ...args ){
 		super( ...args );
 
-		let currentUser     = ContactStore.getCurrentUser() ;
+		let currentUser     = UserStore.getCurrentUser() ;
 		let activeContact = ContactStore.getActiveContact();
 		let messages = MessageStore.getActiveContactMessages();
 

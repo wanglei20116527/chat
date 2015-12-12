@@ -14,28 +14,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+var _events = require("events");
 
-var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+var _events2 = _interopRequireDefault(_events);
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
-var Underscore = require('underscore');
-var EventEmitter = require('events').EventEmitter;
+var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+
+var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+
+var EventEmitter = _events2["default"].EventEmitter;
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
 var ActionConstants = _constantsBreathChatConstants2["default"].Action;
 var ContactType = _constantsBreathChatConstants2["default"].Contact.Type;
 
 var _$$_ = {
-	currentUser: {
-		id: 1,
-		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
-		nickname: "wanglei"
-	},
-
 	activeContactId: 2,
 	activeContactType: ContactType.USER,
 
@@ -112,11 +113,6 @@ var BreathChatContactStore = (function (_EventEmitter) {
 			}
 
 			return contact;
-		}
-	}, {
-		key: "getCurrentUser",
-		value: function getCurrentUser() {
-			return _$$_.currentUser;
 		}
 	}, {
 		key: "getActiveContact",

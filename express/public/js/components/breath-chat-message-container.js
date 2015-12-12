@@ -1,4 +1,3 @@
-// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14,6 +13,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+// import components
 
 var _breathChatLabel = require("./breath-chat-label");
 
@@ -31,10 +40,6 @@ var _breathChatMessageRight = require("./breath-chat-message-right");
 
 var _breathChatMessageRight2 = _interopRequireDefault(_breathChatMessageRight);
 
-var React = require("react");
-var ReactDOM = require("react-dom");
-var UnderScore = require("underscore");
-
 function createMessageItem(currentUser, activeContact, message) {
 	var thumbnailItem = null;
 	var thumbnailProps = {
@@ -45,16 +50,16 @@ function createMessageItem(currentUser, activeContact, message) {
 	} else {
 		thumbnailProps.url = activeContact.thumbnail;
 	}
-	thumbnailItem = React.createElement(_breathChatThumbnail2["default"], thumbnailProps);
+	thumbnailItem = _react2["default"].createElement(_breathChatThumbnail2["default"], thumbnailProps);
 
 	var messageItem = null;
 	var messageProps = {
 		content: message.content
 	};
 	if (currentUser.id == message.senderId) {
-		messageItem = React.createElement(_breathChatMessageRight2["default"], messageProps);
+		messageItem = _react2["default"].createElement(_breathChatMessageRight2["default"], messageProps);
 	} else {
-		messageItem = React.createElement(_breathChatMessageLeft2["default"], messageProps);
+		messageItem = _react2["default"].createElement(_breathChatMessageLeft2["default"], messageProps);
 	}
 
 	var messageContainerItem = null;
@@ -67,7 +72,7 @@ function createMessageItem(currentUser, activeContact, message) {
 	} else {
 		messageContainerProps.className += " left";
 	}
-	messageContainerItem = React.createElement(
+	messageContainerItem = _react2["default"].createElement(
 		"li",
 		messageContainerProps,
 		thumbnailItem,
@@ -105,17 +110,17 @@ var BreathChatMessageContainer = (function (_React$Component) {
 			// 			 		        </li>;
 			// 			break;
 
-			var messagesWrappers = UnderScore.map(this.props.messages.datas, (function (message) {
+			var messagesWrappers = _underscore2["default"].map(this.props.messages.datas, (function (message) {
 				var currentUser = this.props.currentUser;
 				var activeContact = this.props.activeContact;
 
 				return createMessageItem(currentUser, activeContact, message);
 			}).bind(this));
 
-			return React.createElement(
+			return _react2["default"].createElement(
 				"div",
 				{ ref: "outerContainer", className: "breath-chat-messages-container" },
-				React.createElement(
+				_react2["default"].createElement(
 					"ul",
 					{ className: "breath-chat-messages-inner-container" },
 					messagesWrappers
@@ -125,7 +130,7 @@ var BreathChatMessageContainer = (function (_React$Component) {
 	}]);
 
 	return BreathChatMessageContainer;
-})(React.Component);
+})(_react2["default"].Component);
 
 BreathChatMessageContainer.defaultProps = {
 	messages: {}

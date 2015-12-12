@@ -1,20 +1,16 @@
-import Dispatcher from "../dispatchers/breath-chat-dispatcher";
-import Constants  from "../constants/breath-chat-constants";
+import Events from "events";
+import Underscore from "underscore";
 
-let Underscore = require( 'underscore' );
-let EventEmitter = require('events').EventEmitter;
+import Constants  from "../constants/breath-chat-constants";
+import Dispatcher from "../dispatchers/breath-chat-dispatcher";
+
+const EventEmitter = Events.EventEmitter;
 
 const EventConstants   = Constants.Event;
 const ActionConstants = Constants.Action;
 const ContactType = Constants.Contact.Type;
 
 let _$$_ = {
-	currentUser: {
-		id: 1,
-		thumbnail: "images/cd3ed493551d79846b19dc2a50de3cad.png",
-		nickname: "wanglei"
-	},
-
 	activeContactId: 2 ,
 	activeContactType: ContactType.USER,
 
@@ -86,10 +82,6 @@ class BreathChatContactStore extends EventEmitter {
 		}
 
 		return contact;
-	}
-
-	getCurrentUser(){
-		return _$$_ .currentUser;
 	}
 
 	getActiveContact() {

@@ -14,20 +14,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+var _events = require("events");
 
-var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+var _events2 = _interopRequireDefault(_events);
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _constantsBreathChatConstants = require("../constants/breath-chat-constants");
 
 var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
+var _dispatchersBreathChatDispatcher = require("../dispatchers/breath-chat-dispatcher");
+
+var _dispatchersBreathChatDispatcher2 = _interopRequireDefault(_dispatchersBreathChatDispatcher);
+
+var _breathChatUserStore = require("./breath-chat-user-store");
+
+var _breathChatUserStore2 = _interopRequireDefault(_breathChatUserStore);
+
 var _breathChatContactStore = require("./breath-chat-contact-store");
 
 var _breathChatContactStore2 = _interopRequireDefault(_breathChatContactStore);
 
-var Underscore = require('underscore');
-var EventEmitter = require('events').EventEmitter;
+var EventEmitter = _events2["default"].EventEmitter;
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
 var ActionConstants = _constantsBreathChatConstants2["default"].Action;
@@ -145,63 +156,16 @@ var _$$_ = {
 	group: {}
 };
 
-function makeAllMessagesReaded(contactId, contactType) {
-	switch (contactType) {
-		case ContactType.USER:
-			_$$_.user[contactId].datas = Underscore.map(_$$_.user[contactId].datas, function (data) {
-				data.isRead = true;
-				return data;
-			});
-			break;
-
-		case ContactType.GROUP:
-			console.log("make group %d all message readed", contactId);
-			break;
-	}
-}
-
-function getMessageType(message) {
-	return MessageType.TEXT;
-}
-
-function pushEndMessages(contactId, contactType, messages) {
-	var currentUser = _breathChatContactStore2["default"].getCurrentUser();
-	var activeContact = _breathChatContactStore2["default"].getActiveContact();
-	var activeContactType = _breathChatContactStore2["default"].getActiveContactType();
-
-	switch (contactType) {
-		case ContactType.USER:
-			_$$_.user[contactId].datas || (_$$_.user[contactId].datas = []);
-
-			Underscore.each(messages, function (message) {
-				var newMessage = {
-					senderId: currentUser.id,
-					recieverId: activeContact.id,
-					recieverType: activeContactType,
-					content: message,
-					contentType: getMessageType(message),
-					datetime: Date.now(),
-					isRead: true
-				};
-
-				_$$_.user[contactId].datas.push(newMessage);
-			});
-			break;
-
-		case ContactType.GROUP:
-			break;
-	}
-}
-
-function pushBeginMessages(contactId, contactType, messages) {}
-
 var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
-	var contact = _breathChatContactStore2["default"].getActiveContact();
-	var contactType = _breathChatContactStore2["default"].getActiveContactType();
+	var contact = null;
+	var contactType = null;
 
 	switch (action.type) {
 		case ActionConstants.CHANGE_ACTIVE_CONTACT:
 			_dispatchersBreathChatDispatcher2["default"].waitFor([_breathChatContactStore2["default"].dispatchToken]);
+
+			contact = _breathChatContactStore2["default"].getActiveContact();
+			contactType = _breathChatContactStore2["default"].getActiveContactType();
 
 			makeAllMessagesReaded(contact.id, contactType);
 
@@ -209,6 +173,9 @@ var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(funct
 			break;
 
 		case ActionConstants.CREATE_MESSAGE:
+			contact = _breathChatContactStore2["default"].getActiveContact();
+			contactType = _breathChatContactStore2["default"].getActiveContactType();
+
 			var message = action.data.message;
 			pushEndMessages(contact.id, contactType, [message]);
 
@@ -255,7 +222,7 @@ var BreathChatMessageStore = (function (_EventEmitter) {
 						amount: _$$_.user[contactId].amount
 					};
 
-					messages.datas = Underscore.map(_$$_.user[contactId].datas, function (data) {
+					messages.datas = _underscore2["default"].map(_$$_.user[contactId].datas, function (data) {
 						return {
 							id: data.recieverType + " " + data.senderId + " " + data.recieverId + data.datetime,
 							senderId: data.senderId,
@@ -284,4 +251,54 @@ var BreathChatMessageStore = (function (_EventEmitter) {
 var messageStore = new BreathChatMessageStore();
 
 exports["default"] = messageStore;
+
+function makeAllMessagesReaded(contactId, contactType) {
+	switch (contactType) {
+		case ContactType.USER:
+			_$$_.user[contactId].datas = _underscore2["default"].map(_$$_.user[contactId].datas, function (data) {
+				data.isRead = true;
+				return data;
+			});
+			break;
+
+		case ContactType.GROUP:
+			console.log("make group %d all message readed", contactId);
+			break;
+	}
+}
+
+function getMessageType(message) {
+	return MessageType.TEXT;
+}
+
+function pushEndMessages(contactId, contactType, messages) {
+	var currentUser = _breathChatUserStore2["default"].getCurrentUser();
+	var activeContact = _breathChatContactStore2["default"].getActiveContact();
+	var activeContactType = _breathChatContactStore2["default"].getActiveContactType();
+
+	switch (contactType) {
+		case ContactType.USER:
+			_$$_.user[contactId].datas || (_$$_.user[contactId].datas = []);
+
+			_underscore2["default"].each(messages, function (message) {
+				var newMessage = {
+					senderId: currentUser.id,
+					recieverId: activeContact.id,
+					recieverType: activeContactType,
+					content: message,
+					contentType: getMessageType(message),
+					datetime: Date.now(),
+					isRead: true
+				};
+
+				_$$_.user[contactId].datas.push(newMessage);
+			});
+			break;
+
+		case ContactType.GROUP:
+			break;
+	}
+}
+
+function pushBeginMessages(contactId, contactType, messages) {}
 module.exports = exports["default"];

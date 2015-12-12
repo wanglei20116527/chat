@@ -1,34 +1,30 @@
-let React = require( "react" );
-let ReactDOM = require( "react-dom" );
+import React from "react";
 
+// import components
 import Navigator from "./breath-chat-navigator";
+import TooPane from "./breath-chat-toolPane";
 import ContactPane from "./breath-chat-contact-pane";
 import CommunicatePane from "./breath-chat-communicatePane";
 
+// import  layers
+import ContextMenuLayer from "../layers/breath-chat-contextMenuLayer";
+
 class BreathChat extends React.Component{
-	componentDidMount(){
-		// let chatNode =  ReactDOM.findDOMNode( this.refs.chat );
-		// let sideBarNode = ReactDOM.findDOMNode( this.refs.sideBar );
-		// let contactPaneNode = ReactDOM.findDOMNode( this.refs.contactPane );
-		// let communicatePaneNode = ReactDOM.findDOMNode( this.refs.communicatePane );
-
-		// let communicatePaneStyle = document.defaultView.getComputedStyle( communicatePaneNode, null );
-		
-		// chatNode.style.height = communicatePaneStyle.height;
-		// sideBarNode.style.height = communicatePaneStyle.height;
-		// contactPaneNode.style.height = communicatePaneStyle.height;
-	}
-
 	render(){
 		return (
-			<div className = "breath-chat" ref = "chat">
-				<div className = "side-bar" ref = "sideBar">
-					<Navigator />
+			<div className = "breath-chat">
+				<div className = "main-layer breath-chat-layer">
+					<div className = "side-bar" >
+						<Navigator />
+						<TooPane />
+					</div>
+
+					<div className = "content-area">
+						{this.props.children}
+					</div>
 				</div>
 
-				<div className = "content-area">
-					{this.props.children}
-				</div>
+				<ContextMenuLayer />
 			</div>
 		)
 	}

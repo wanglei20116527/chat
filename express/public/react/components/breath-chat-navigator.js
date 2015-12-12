@@ -26,22 +26,8 @@ class BreathChatNavigator extends React.Component {
 
 			{
 				prop: {
-					className: "communicate-link icon-comment",
+					className: "contact-link icon-comment",
 					to: "communicate",
-				},
-			},
-
-			{
-				prop: {
-					className: "contact-link icon-user",
-					to: "",
-				}
-			},
-
-			{
-				prop: {
-					className: "group-link icon-group",
-					to: "",
 				}
 			}
 		];

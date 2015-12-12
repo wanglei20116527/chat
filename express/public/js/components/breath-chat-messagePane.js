@@ -1,4 +1,3 @@
-// import components
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17,6 +16,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+// import components
+
 var _breathChatInteractivePane = require("./breath-chat-interactivePane");
 
 var _breathChatInteractivePane2 = _interopRequireDefault(_breathChatInteractivePane);
@@ -33,6 +46,10 @@ var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChat
 
 // import stores
 
+var _storesBreathChatUserStore = require("../stores/breath-chat-user-store");
+
+var _storesBreathChatUserStore2 = _interopRequireDefault(_storesBreathChatUserStore);
+
 var _storesBreathChatContactStore = require("../stores/breath-chat-contact-store");
 
 var _storesBreathChatContactStore2 = _interopRequireDefault(_storesBreathChatContactStore);
@@ -40,10 +57,6 @@ var _storesBreathChatContactStore2 = _interopRequireDefault(_storesBreathChatCon
 var _storesBreathChatMessageStore = require("../stores/breath-chat-message-store");
 
 var _storesBreathChatMessageStore2 = _interopRequireDefault(_storesBreathChatMessageStore);
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-var Underscore = require("underscore");
 
 var EventConstants = _constantsBreathChatConstants2["default"].Event;
 
@@ -59,7 +72,7 @@ var BreathChatMessagePane = (function (_React$Component) {
 
 		_get(Object.getPrototypeOf(BreathChatMessagePane.prototype), "constructor", this).apply(this, args);
 
-		var currentUser = _storesBreathChatContactStore2["default"].getCurrentUser();
+		var currentUser = _storesBreathChatUserStore2["default"].getCurrentUser();
 		var activeContact = _storesBreathChatContactStore2["default"].getActiveContact();
 		var messages = _storesBreathChatMessageStore2["default"].getActiveContactMessages();
 
@@ -83,7 +96,7 @@ var BreathChatMessagePane = (function (_React$Component) {
 				callback: this.updateMessages.bind(this)
 			}];
 
-			Underscore.map(events, function (evt) {
+			_underscore2["default"].map(events, function (evt) {
 				evt.store.on(evt.name, evt.callback);
 			});
 
@@ -100,7 +113,7 @@ var BreathChatMessagePane = (function (_React$Component) {
 				name: EventConstants.MESSAGE_CAHNGE
 			}];
 
-			Underscore.map(events, function (evt) {
+			_underscore2["default"].map(events, function (evt) {
 				evt.store.removeListener(evt.name);
 			});
 		}
@@ -152,7 +165,7 @@ var BreathChatMessagePane = (function (_React$Component) {
 	}, {
 		key: "scrollMessageContainerToBottom",
 		value: function scrollMessageContainerToBottom() {
-			var messageContainerWrapperNode = ReactDOM.findDOMNode(this.refs.messageContainerWrapper);
+			var messageContainerWrapperNode = _reactDom2["default"].findDOMNode(this.refs.messageContainerWrapper);
 
 			messageContainerWrapperNode.scrollTop = messageContainerWrapperNode.scrollHeight;
 		}
@@ -167,38 +180,38 @@ var BreathChatMessagePane = (function (_React$Component) {
 				messages: this.state.messages
 			};
 
-			return React.createElement(
+			return _react2["default"].createElement(
 				"div",
 				{ className: "breath-chat-messagePane" },
-				React.createElement(
+				_react2["default"].createElement(
 					"div",
 					{ className: "headerBar" },
-					React.createElement(
+					_react2["default"].createElement(
 						"span",
 						null,
 						activeContactName
 					)
 				),
-				React.createElement(
+				_react2["default"].createElement(
 					"div",
 					{ className: "messageArea" },
-					React.createElement(
+					_react2["default"].createElement(
 						"div",
 						{ className: "messageContainerWrapper", ref: "messageContainerWrapper" },
-						React.createElement(_breathChatMessageContainer2["default"], _extends({ ref: "messageContainer " }, messageAreaProps))
+						_react2["default"].createElement(_breathChatMessageContainer2["default"], _extends({ ref: "messageContainer " }, messageAreaProps))
 					)
 				),
-				React.createElement(
+				_react2["default"].createElement(
 					"div",
 					{ className: "interactiveArea" },
-					React.createElement(_breathChatInteractivePane2["default"], null)
+					_react2["default"].createElement(_breathChatInteractivePane2["default"], null)
 				)
 			);
 		}
 	}]);
 
 	return BreathChatMessagePane;
-})(React.Component);
+})(_react2["default"].Component);
 
 exports["default"] = BreathChatMessagePane;
 module.exports = exports["default"];

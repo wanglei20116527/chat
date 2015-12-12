@@ -21,12 +21,21 @@ const BreathChatConstants = {
 
 	Event:{
 		CHANGE_ACTIVE_CONTACT: 1,
-		MESSAGE_CAHNGE: 2
+		MESSAGE_CAHNGE: 2,
+
+		SHOW_CONTEXT_MENU: 3
 	},
 
 	Action: {
 		CHANGE_ACTIVE_CONTACT: 1,
-		CREATE_MESSAGE: 2
+		CREATE_MESSAGE: 2,
+
+		SHOW_CONTEXT_MENU: 3
+	},
+
+	ContextMenu: {
+		NONE: 1,
+		ADD_CONTACT: 2
 	}
 };
 
