@@ -1,0 +1,44 @@
+$breath-chat-addUserDialog-width: 100% !default;
+$breath-chat-addUserDialog-height: 100% !default;
+
+.breath-chat-dialog 
+{
+	&.addUserDialog
+	{
+		position: relative;
+		display: block;
+		background-color: white;
+
+		width: $breath-chat-addUserDialog-width;
+		height: $breath-chat-addUserDialog-height;
+
+		&.stretch-enter,
+		&.stretch-appear
+		{
+			width: 0;
+			height: 0;
+			transition: all 0.5s ease-in-out;
+
+		}
+
+		&.stretch-enter.stretch-enter-active,
+		&.stretch-appear.stretch-appear-active
+		{
+			width: 100%;
+			height: 100%;
+		}
+
+		&.stretch-leave
+		{
+			width: 100%;
+			height: 100%;
+			transition: all 0.5s ease-in-out;
+		}
+
+		&.stretch-leave.stretch-leave-active
+		{
+			width: 0;
+			height: 0;
+		}
+	}
+} 

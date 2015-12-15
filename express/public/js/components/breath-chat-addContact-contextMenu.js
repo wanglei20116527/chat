@@ -24,6 +24,8 @@ var _underscore = require("underscore");
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
+// import components
+
 var _breathChatContextMenu = require("./breath-chat-contextMenu");
 
 var _breathChatContextMenu2 = _interopRequireDefault(_breathChatContextMenu);
@@ -31,6 +33,18 @@ var _breathChatContextMenu2 = _interopRequireDefault(_breathChatContextMenu);
 var _breathChatContextMenuItem = require("./breath-chat-contextMenuItem");
 
 var _breathChatContextMenuItem2 = _interopRequireDefault(_breathChatContextMenuItem);
+
+var _actionsBreathChatDialogAction = require('../actions/breath-chat-dialogAction');
+
+var _actionsBreathChatDialogAction2 = _interopRequireDefault(_actionsBreathChatDialogAction);
+
+var _actionsBreathChatContextMenuAction = require('../actions/breath-chat-contextMenuAction');
+
+var _actionsBreathChatContextMenuAction2 = _interopRequireDefault(_actionsBreathChatContextMenuAction);
+
+var _constantsBreathChatConstants = require('../constants/breath-chat-constants');
+
+var _constantsBreathChatConstants2 = _interopRequireDefault(_constantsBreathChatConstants);
 
 var _configuration = [{
 	showText: true,
@@ -41,7 +55,10 @@ var _configuration = [{
 		fontSize: 20
 	},
 	onClickHandler: function onClickHandler(evt) {
-		alert('wanglei is cool');
+		_actionsBreathChatDialogAction2["default"].showDialog(_constantsBreathChatConstants2["default"].Dialog.ADD_USER_DIALOG, {
+			x: evt.pageX,
+			y: evt.pageY
+		});
 	}
 }, {
 	showText: true,
@@ -52,7 +69,7 @@ var _configuration = [{
 		fontSize: 16
 	},
 	onClickHandler: function onClickHandler(evt) {
-		alert('houna is cute');
+		console.log('houna is cute');
 	}
 }];
 
@@ -66,22 +83,35 @@ var BreathChatAddContactContextMenu = (function (_React$Component) {
 	}
 
 	_createClass(BreathChatAddContactContextMenu, [{
+		key: "hideContextMenu",
+		value: function hideContextMenu() {
+			_actionsBreathChatContextMenuAction2["default"].showContextMenu(_constantsBreathChatConstants2["default"].ContextMenu.NONE, null);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var menuItems = _underscore2["default"].map(_configuration, function (itemProp, index) {
 				return _react2["default"].createElement(_breathChatContextMenuItem2["default"], _extends({}, itemProp, { key: index }));
 			});
 
-			var contextMenuProps = {
-				tabindex: "-1", // hack to have the ability to focus and blur
-				onBlur: function onBlur(evt) {
-					console.log('*********************');
-				}
+			var contentMenuProps = {
+				x: this.props.x,
+				y: this.props.y,
+
+				autoFocus: true,
+
+				onBlurHandler: (function (evt) {
+					this.hideContextMenu();
+				}).bind(this),
+
+				onClickHandler: (function (evt) {
+					this.hideContextMenu();
+				}).bind(this)
 			};
 
 			return _react2["default"].createElement(
 				_breathChatContextMenu2["default"],
-				_extends({}, this.props, contextMenuProps, { ref: "contextMenu" }),
+				_extends({}, this.props, contentMenuProps, { ref: "contextMenu" }),
 				menuItems
 			);
 		}

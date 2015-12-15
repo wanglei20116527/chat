@@ -1,0 +1,22 @@
+.breath-chat-dialog.addUserDialog {
+  position: relative;
+  display: block;
+  background-color: white;
+  width: 100%;
+  height: 100%; }
+  .breath-chat-dialog.addUserDialog.stretch-enter, .breath-chat-dialog.addUserDialog.stretch-appear {
+    width: 0;
+    height: 0;
+    transition: all 0.5s ease-in-out; }
+  .breath-chat-dialog.addUserDialog.stretch-enter.stretch-enter-active, .breath-chat-dialog.addUserDialog.stretch-appear.stretch-appear-active {
+    width: 100%;
+    height: 100%; }
+  .breath-chat-dialog.addUserDialog.stretch-leave {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out; }
+  .breath-chat-dialog.addUserDialog.stretch-leave.stretch-leave-active {
+    width: 0;
+    height: 0; }
+
+/*# sourceMappingURL=_breath-chat-dialog.css.map */

@@ -43,10 +43,13 @@ var _$$_ = {
 var _dispatchToken = _dispatchersBreathChatDispatcher2["default"].register(function (action) {
 	switch (action.type) {
 		case ActionContants.SHOW_CONTEXT_MENU:
-			_$$_.contextMenuType = action.data.type;
+			var type = action.data.type || ContextMenuConstants.NONE;
+			var position = action.data.position || { x: 0, y: 0 };
+
+			_$$_.contextMenuType = type;
 			_$$_.position = {
-				x: action.data.position.x,
-				y: action.data.position.y
+				x: position.x || 0,
+				y: position.y || 0
 			};
 
 			layerStore.emit(EventConstants.SHOW_CONTEXT_MENU);

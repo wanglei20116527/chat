@@ -22,7 +22,7 @@ $breath-chat-side-bar-pc-backgroundColor: #66CEFF !default;
 	.breath-chat-layer
 	{
 		position: absolute;
-		width: 0;
+		width: 100%;
 		height: 0;
 		top: 0;
 		left: 0;
@@ -68,5 +68,10 @@ $breath-chat-side-bar-pc-backgroundColor: #66CEFF !default;
 	.context-menu-layer
 	{
 		z-index: 2;
+	}
+
+	.dialog-layer
+	{
+		z-index: 3;
 	}
 }

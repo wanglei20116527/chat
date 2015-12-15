@@ -38,6 +38,10 @@ var _breathChatCommunicatePane2 = _interopRequireDefault(_breathChatCommunicateP
 
 // import  layers
 
+var _layersBreathChatDialogLayer = require("../layers/breath-chat-dialogLayer");
+
+var _layersBreathChatDialogLayer2 = _interopRequireDefault(_layersBreathChatDialogLayer);
+
 var _layersBreathChatContextMenuLayer = require("../layers/breath-chat-contextMenuLayer");
 
 var _layersBreathChatContextMenuLayer2 = _interopRequireDefault(_layersBreathChatContextMenuLayer);
@@ -72,7 +76,8 @@ var BreathChat = (function (_React$Component) {
 						this.props.children
 					)
 				),
-				_react2["default"].createElement(_layersBreathChatContextMenuLayer2["default"], null)
+				_react2["default"].createElement(_layersBreathChatContextMenuLayer2["default"], null),
+				_react2["default"].createElement(_layersBreathChatDialogLayer2["default"], null)
 			);
 		}
 	}]);

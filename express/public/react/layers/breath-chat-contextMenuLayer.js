@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import UnderScore from "underscore";
 
 import Contants from "../constants/breath-chat-constants"; 
@@ -19,6 +20,26 @@ class BreathChatContextMenuLayer extends React.Component{
 			type: ContextMenuStore.getContextMenuType(),
 			position: ContextMenuStore.getPosition()
 		}
+	}
+
+	getLayerAbsolutePosition(){
+		let layerNode = ReactDOM.findDOMNode( this.refs.menuLayer );
+
+		let position = {
+			x: layerNode.offsetLeft,
+			y: layerNode.offsetTop
+		};
+
+		let parentNode = layerNode.offsetParent;
+
+		while( parentNode ){
+			position.x += parentNode.offsetLeft;
+			position.y += parentNode.offsetTop;
+
+			parentNode = parentNode.offsetParent;
+		}
+
+		return position;
 	}
 
 	componentDidMount(){
@@ -50,17 +71,23 @@ class BreathChatContextMenuLayer extends React.Component{
 	}
 
 	updateContextMenu(){
+		let position =  ContextMenuStore.getPosition();
+		let layerPosition = this.getLayerAbsolutePosition();
+
 		this.setState({
 			type: ContextMenuStore.getContextMenuType(),
-			position: ContextMenuStore.getPosition()
+			position: {
+				x: position.x - layerPosition.x ,
+				y: position.y - layerPosition.y
+			} 
 		});
 	}
 
 	render(){
 		let contextMenu = null;
 		let contextMenuPosition = {
-			x: 0,
-			y: 0
+			x: this.state.position.x ,
+			y: this.state.position.y
 		};
 		
 		switch( this.state.type ){

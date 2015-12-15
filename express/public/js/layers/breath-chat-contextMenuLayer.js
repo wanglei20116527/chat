@@ -18,6 +18,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _underscore = require("underscore");
 
 var _underscore2 = _interopRequireDefault(_underscore);
@@ -57,6 +61,27 @@ var BreathChatContextMenuLayer = (function (_React$Component) {
 	}
 
 	_createClass(BreathChatContextMenuLayer, [{
+		key: "getLayerAbsolutePosition",
+		value: function getLayerAbsolutePosition() {
+			var layerNode = _reactDom2["default"].findDOMNode(this.refs.menuLayer);
+
+			var position = {
+				x: layerNode.offsetLeft,
+				y: layerNode.offsetTop
+			};
+
+			var parentNode = layerNode.offsetParent;
+
+			while (parentNode) {
+				position.x += parentNode.offsetLeft;
+				position.y += parentNode.offsetTop;
+
+				parentNode = parentNode.offsetParent;
+			}
+
+			return position;
+		}
+	}, {
 		key: "componentDidMount",
 		value: function componentDidMount() {
 			var events = [{
@@ -84,9 +109,15 @@ var BreathChatContextMenuLayer = (function (_React$Component) {
 	}, {
 		key: "updateContextMenu",
 		value: function updateContextMenu() {
+			var position = _storesBreathChatContextMenuStore2["default"].getPosition();
+			var layerPosition = this.getLayerAbsolutePosition();
+
 			this.setState({
 				type: _storesBreathChatContextMenuStore2["default"].getContextMenuType(),
-				position: _storesBreathChatContextMenuStore2["default"].getPosition()
+				position: {
+					x: position.x - layerPosition.x,
+					y: position.y - layerPosition.y
+				}
 			});
 		}
 	}, {
@@ -94,8 +125,8 @@ var BreathChatContextMenuLayer = (function (_React$Component) {
 		value: function render() {
 			var contextMenu = null;
 			var contextMenuPosition = {
-				x: 0,
-				y: 0
+				x: this.state.position.x,
+				y: this.state.position.y
 			};
 
 			switch (this.state.type) {

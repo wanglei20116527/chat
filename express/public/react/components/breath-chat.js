@@ -7,6 +7,7 @@ import ContactPane from "./breath-chat-contact-pane";
 import CommunicatePane from "./breath-chat-communicatePane";
 
 // import  layers
+import DialogLayer from  "../layers/breath-chat-dialogLayer";
 import ContextMenuLayer from "../layers/breath-chat-contextMenuLayer";
 
 class BreathChat extends React.Component{
@@ -25,6 +26,7 @@ class BreathChat extends React.Component{
 				</div>
 
 				<ContextMenuLayer />
+				<DialogLayer />
 			</div>
 		)
 	}
